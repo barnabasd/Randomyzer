@@ -33,7 +33,17 @@ public class Property<T> {
                 new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/randomyzer " + Id + " " + "+1"))))
             .append(Component.literal("§2[+5]").setStyle(Style.EMPTY.withClickEvent(
                 new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/randomyzer " + Id + " " + "+5"))));
-        if (Value instanceof Boolean) return Component.literal("BooleanEngine");
+
+        if (Value instanceof Boolean) return Component.empty()
+            .append(Component.literal("§4[DISABLE]").setStyle(Style.EMPTY.withClickEvent(
+                new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/randomyzer " + Id + " false"))))
+            .append(Component.literal("§6§l [R] ").setStyle(Style.EMPTY.withClickEvent(
+                new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/randomyzer " + Id + " " + Reset))))
+            .append(Component.literal("§2[ENABLE]").setStyle(Style.EMPTY.withClickEvent(
+                new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/randomyzer " + Id + " true"))));
+
+        if (Value instanceof Enum) return Component.literal("TODO :: Enum value buttons");
+        
         else return Component.literal("No.");
     }
 
