@@ -1,4 +1,4 @@
-[](https://github.com/barnabasd/Randomyzer/blob/master/images/banner_big.jpg?raw=true)
+![](https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/banner_big.jpg)
 # Basic Commands
 |Command|Explanation|
 |-------|-----------|
