@@ -1,3 +1,4 @@
+[](https://github.com/barnabasd/Randomyzer/blob/master/images/banner_big.jpg?raw=true)
 # Basic Commands
 |Command|Explanation|
 |-------|-----------|
