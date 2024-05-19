@@ -16,10 +16,10 @@
 |`GiveAmount`|One item|Controls how many items each player gets.|
 |`CountdownStyle`|bossbar|Possible values: <ul><li><code>bossbar</code> Uses a bossbar on the top of the screen</li><li><code>actionbar_text</code> Uses the actionbar like: "20 seconds remaining"</li><li><code>actionbar_progressbar</code> Uses the actionbar like: "[■■■■----------------]"</li><li><code>experiencebar</code> Uses the experience bar and levels. (Careful because players can use the given experience!)</li><li><code>hidden</code> Hides all the countdowns.</li></ul>||``|.|
 |`GiveBehaviour`|random_individual|Examples down below|
-# GiveBehaviour Example Explanation (one cycle with 2 items)
-|Name|Player1|Player2|
-|----|-------|-------|
-|||
-|||
-|||
-|||
+# GiveBehaviour Explanation
+|Name|Explanation|
+|----|-----------|
+|`random_individual`|Every player gets {GiveAmount} random different items.<br>Different for every player.|
+|`uniform_individual`|Every player gets {GiveAmount} of one item.<br>Different for every player.|
+|`random_shared`|Every player gets {GiveAmount} random different items.<br>Same random items for every player.|
+|`uniform_shared`|Every player gets {GiveAmount} of one item.<br>Same random items for every player.|
