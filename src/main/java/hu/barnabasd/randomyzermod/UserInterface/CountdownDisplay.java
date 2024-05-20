@@ -1,19 +1,22 @@
-package hu.barnabasd.randomyzermod;
+package hu.barnabasd.randomyzermod.UserInterface;
+
+import hu.barnabasd.randomyzermod.Filtering.RandomGen;
+import hu.barnabasd.randomyzermod.MainMod;
 
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.TickEvent;
-import org.jetbrains.annotations.NotNull;
 import net.minecraft.world.BossEvent;
 
-public class CountdownDisplay {
-    public static int CountDownTicks = (int)MainMod.Options.get(3).Value * 20;
-    public static boolean ClearOnNextTick = false;
-    public static boolean IsPaused = true;
+import org.jetbrains.annotations.NotNull;
 
+public class CountdownDisplay {
     public enum DisplayStyle { bossbar, actionbar_text, actionbar_progressbar, expriencebar, hidden }
+
+    public static int CountDownTicks = (int) MainMod.Options.get(3).Value * 20;
+    public static boolean ClearOnNextTick = false, IsPaused = true;
 
     public static void onServerTick(@NotNull TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.START || IsPaused) return;

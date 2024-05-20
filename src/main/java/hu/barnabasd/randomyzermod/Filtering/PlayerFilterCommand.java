@@ -1,17 +1,18 @@
 package hu.barnabasd.randomyzermod.Filtering;
 
+import hu.barnabasd.randomyzermod.UserInterface.Messages;
 import hu.barnabasd.randomyzermod.ConfCommand;
+
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import hu.barnabasd.randomyzermod.Messages;
 import net.minecraft.commands.arguments.EntityArgument;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.MinecraftServer;
 import com.mojang.brigadier.StringReader;
-import org.jetbrains.annotations.NotNull;
 import net.minecraft.commands.Commands;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;

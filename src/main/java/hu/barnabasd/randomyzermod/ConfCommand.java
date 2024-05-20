@@ -1,12 +1,15 @@
 package hu.barnabasd.randomyzermod;
 
+import hu.barnabasd.randomyzermod.UserInterface.Messages;
+
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
-import org.jetbrains.annotations.NotNull;
 import net.minecraft.commands.Commands;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
@@ -15,15 +18,10 @@ import static hu.barnabasd.randomyzermod.MainMod.Options;
 public class ConfCommand {
 
     public static class Property<T> {
-
-        public interface Callback {
-            void call(Object newVal);
-        }
-
+        public interface Callback { void call(Object newVal); }
+        public final T Reset; public T Value;
         public final Callback OnValueUpdate;
         public final String Name;
-        public final T Reset;
-        public T Value;
         public Property(String name, T value, Callback onValueUpdate) {
             Value = Reset = value; Name = name; OnValueUpdate = onValueUpdate;
         }
@@ -32,11 +30,10 @@ public class ConfCommand {
         }
         public void setValue(Object value) {
             Value = (T)value;
-            if (OnValueUpdate != null) OnValueUpdate.call(value);
+            if (OnValueUpdate != null)
+                OnValueUpdate.call(value);
         }
-        public void resetValue() {
-            Value = Reset;
-        }
+        public void resetValue() { Value = Reset; }
     }
     public static class EnumProperty<T extends Enum<?>, Q> extends Property<T> {
         public final Q AvailibleOptions;
@@ -68,10 +65,6 @@ public class ConfCommand {
         }
     }
 
-    // DONT ANYONE DARE TOUCH THIS, EXTREMELY UNSAFE AND BAD CODE HERE
-    // DO NOT TAKE THIS AS A LEARNING EXAMPLE, I AM ASHAMED I HAD TO
-    // WRITE THIS PIECE OF CODE PLEASE DO NOT DO SOMETHING LIKE THIS
-    // But yes, it does work...
     private static int SetParameterProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull EnumProperty<?, ?> option) {
         String newProperty = c.getInput().split(" ")[c.getInput().split(" ").length - 1];
         Enum<?> newActualProperty = Arrays.stream(((Enum<?>[])option.AvailibleOptions))

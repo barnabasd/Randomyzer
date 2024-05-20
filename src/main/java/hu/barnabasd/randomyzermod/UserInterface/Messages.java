@@ -1,7 +1,10 @@
-package hu.barnabasd.randomyzermod;
+package hu.barnabasd.randomyzermod.UserInterface;
+
+import hu.barnabasd.randomyzermod.ConfCommand;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
+
 import org.jetbrains.annotations.NotNull;
 
 public class Messages {
