@@ -1,8 +1,8 @@
 package hu.barnabasd.randomyzermod;
 
-import hu.barnabasd.randomyzermod.UserInterface.CountdownDisplay;
-import hu.barnabasd.randomyzermod.Filtering.PlayerFilterCommand;
-import hu.barnabasd.randomyzermod.Filtering.RandomGen;
+import hu.barnabasd.randomyzermod.userinterface.CountdownDisplay;
+import hu.barnabasd.randomyzermod.filtering.PlayerFilterCommand;
+import hu.barnabasd.randomyzermod.filtering.RandomGen;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -22,8 +22,7 @@ import java.util.List;
 public class MainMod {
 
     public static final List<ConfCommand.Property<?>> Options = List.of(
-        new ConfCommand.EnumProperty<>("CountdownStyle", CountdownDisplay.DisplayStyle.bossbar,
-            CountdownDisplay.DisplayStyle.values(), (x) -> CountdownDisplay.ClearOnNextTick = true),
+        new ConfCommand.EnumProperty<>("CountdownStyle", CountdownDisplay.DisplayStyle.bossbar, CountdownDisplay.DisplayStyle.values()),
         new ConfCommand.EnumProperty<>("GiveBehaviour", RandomGen.GenType.random_individual, RandomGen.GenType.values()),
         new ConfCommand.Property<>("GiveAmount", 1), new ConfCommand.Property<>("CountdownTime", 20,
             (x) -> CountdownDisplay.CountDownTicks = (int)x)

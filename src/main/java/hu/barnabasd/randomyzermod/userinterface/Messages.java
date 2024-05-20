@@ -1,4 +1,4 @@
-package hu.barnabasd.randomyzermod.UserInterface;
+package hu.barnabasd.randomyzermod.userinterface;
 
 import hu.barnabasd.randomyzermod.ConfCommand;
 

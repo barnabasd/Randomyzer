@@ -1,6 +1,6 @@
-package hu.barnabasd.randomyzermod.Filtering;
+package hu.barnabasd.randomyzermod.filtering;
 
-import hu.barnabasd.randomyzermod.UserInterface.Messages;
+import hu.barnabasd.randomyzermod.userinterface.Messages;
 import hu.barnabasd.randomyzermod.ConfCommand;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 
+@SuppressWarnings("SameReturnValue")
 public class PlayerFilterCommand {
 
     public static List<ServerPlayer> GetFilteredPlayers(@NotNull MinecraftServer server) {

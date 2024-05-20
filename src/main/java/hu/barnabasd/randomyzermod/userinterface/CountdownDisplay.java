@@ -1,6 +1,6 @@
-package hu.barnabasd.randomyzermod.UserInterface;
+package hu.barnabasd.randomyzermod.userinterface;
 
-import hu.barnabasd.randomyzermod.Filtering.RandomGen;
+import hu.barnabasd.randomyzermod.filtering.RandomGen;
 import hu.barnabasd.randomyzermod.MainMod;
 
 import net.minecraft.server.level.ServerBossEvent;
@@ -16,7 +16,7 @@ public class CountdownDisplay {
     public enum DisplayStyle { bossbar, actionbar_text, actionbar_progressbar, expriencebar, hidden }
 
     public static int CountDownTicks = (int) MainMod.Options.get(3).Value * 20;
-    public static boolean ClearOnNextTick = false, IsPaused = true;
+    public static boolean IsPaused = true;
 
     public static void onServerTick(@NotNull TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.START || IsPaused) return;

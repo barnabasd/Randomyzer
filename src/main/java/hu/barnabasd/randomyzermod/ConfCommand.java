@@ -1,6 +1,6 @@
 package hu.barnabasd.randomyzermod;
 
-import hu.barnabasd.randomyzermod.UserInterface.Messages;
+import hu.barnabasd.randomyzermod.userinterface.Messages;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 import static hu.barnabasd.randomyzermod.MainMod.Options;
 
+@SuppressWarnings("SameReturnValue")
 public class ConfCommand {
 
     public static class Property<T> {
@@ -65,6 +66,7 @@ public class ConfCommand {
         }
     }
 
+    @SuppressWarnings("SameReturnValue")
     private static int SetParameterProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull EnumProperty<?, ?> option) {
         String newProperty = c.getInput().split(" ")[c.getInput().split(" ").length - 1];
         Enum<?> newActualProperty = Arrays.stream(((Enum<?>[])option.AvailibleOptions))
@@ -88,11 +90,13 @@ public class ConfCommand {
         return 1;
     }
 
+    @SuppressWarnings("SameReturnValue")
     private static int ResetProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull Property<?> option) {
         option.resetValue();
         if (c.getSource().getPlayer() != null) Messages.SendReset(c.getSource().getPlayer(), option);
         return 1;
     }
+    @SuppressWarnings("SameReturnValue")
     private static int GetProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull Property<?> option) {
         if (c.getSource().getPlayer() != null) Messages.SendGet(c.getSource().getPlayer(), option);
         return 1;
