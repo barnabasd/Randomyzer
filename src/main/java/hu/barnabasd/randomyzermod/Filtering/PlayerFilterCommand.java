@@ -18,10 +18,6 @@ import java.util.Objects;
 
 public class PlayerFilterCommand {
 
-    private static void Debug(Object s, @NotNull MinecraftServer ms) {
-        ms.getPlayerList().getPlayers().forEach(x -> x.displayClientMessage(Component.literal(String.valueOf(s)), false));
-    }
-
     public static List<ServerPlayer> GetFilteredPlayers(@NotNull MinecraftServer server) {
         List<ServerPlayer> selectedPlayers = List.of();
         List<ServerPlayer> correctlyFiltered = selectedPlayers;
