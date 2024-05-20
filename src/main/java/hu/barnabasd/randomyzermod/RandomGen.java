@@ -1,8 +1,10 @@
 package hu.barnabasd.randomyzermod;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import hu.barnabasd.randomyzermod.Filtering.PlayerFilterCommand;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.world.item.Item;
@@ -21,7 +23,8 @@ public class RandomGen {
         return new ItemStack(selectedItem, count);
     }
 
-    public static void RunCycle(List<ServerPlayer> players) {
+    public static void RunCycle(MinecraftServer server) {
+        List<ServerPlayer> players = PlayerFilterCommand.GetFilteredPlayers(server);
         GenType type = (GenType)MainMod.Options.get(1).Value;
         int itemCount = (int)MainMod.Options.get(2).Value;
 

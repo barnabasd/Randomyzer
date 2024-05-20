@@ -1,4 +1,4 @@
-package hu.barnabasd.randomyzermod.Configuration;
+package hu.barnabasd.randomyzermod;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
@@ -16,7 +16,7 @@ public class Messages {
             "§r has been successfully reset to: §6" + property.Value + "§r."));
     }
 
-    public static void SendValue(@NotNull ServerPlayer player, ConfCommand.@NotNull Property<?> property) {
+    public static void SendGet(@NotNull ServerPlayer player, ConfCommand.@NotNull Property<?> property) {
         player.sendSystemMessage(Component.literal("§6" + property.Name +
             "§r is: §6" + property.Value + "§r."));
     }
