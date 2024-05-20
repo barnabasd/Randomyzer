@@ -1,8 +1,8 @@
 package hu.barnabasd.randomyzermod;
 
-import hu.barnabasd.randomyzermod.UserInterface.CountdownDisplay;
-import hu.barnabasd.randomyzermod.Filtering.PlayerFilterCommand;
-import hu.barnabasd.randomyzermod.Filtering.RandomGen;
+import hu.barnabasd.randomyzermod.userinterface.CountdownDisplay;
+import hu.barnabasd.randomyzermod.filtering.PlayerFilterCommand;
+import hu.barnabasd.randomyzermod.filtering.RandomGen;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraftforge.event.RegisterCommandsEvent;

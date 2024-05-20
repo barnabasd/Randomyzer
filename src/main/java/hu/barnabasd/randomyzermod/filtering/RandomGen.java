@@ -1,4 +1,4 @@
-package hu.barnabasd.randomyzermod.Filtering;
+package hu.barnabasd.randomyzermod.filtering;
 
 import hu.barnabasd.randomyzermod.MainMod;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class RandomGen {
     public enum GenType { random_individual, uniform_individual, random_shared, uniform_shared }
 
-    public static Collection<Item> Items = ForgeRegistries.ITEMS.getValues();
+    public static final Collection<Item> Items = ForgeRegistries.ITEMS.getValues();
 
     public static @NotNull ItemStack GetItem(int count) {
         int itemIndex = (int)(Items.size() * Math.random());
