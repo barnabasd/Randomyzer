@@ -13,10 +13,10 @@ import net.minecraft.world.BossEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class CountdownDisplay {
-    public enum DisplayStyle { bossbar, actionbar_text, actionbar_progressbar, expriencebar, hidden }
-
     public static int CountDownTicks = (int) MainMod.Options.get(3).Value * 20;
     public static boolean IsPaused = true;
+
+    public enum DisplayStyle { bossbar, actionbar_text, actionbar_progressbar, expriencebar, hidden }
 
     public static void onServerTick(@NotNull TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.START || IsPaused) return;

@@ -43,6 +43,7 @@ public class PlayerFilterCommand {
                 .then(Commands.literal("set").then(Commands.argument("selector", EntityArgument.players())
                         .executes(PlayerFilterCommand::SetSelector))))
             .then(Commands.literal("type").executes(PlayerFilterCommand::GetType)
+                .then(Commands.literal("reset").executes(PlayerFilterCommand::ResetType))
                 .then(Commands.literal("set")
                     .then(Commands.literal("excludePlayers").executes(c -> SetType(c, true)))
                     .then(Commands.literal("includePlayers").executes(c -> SetType(c, false))))));
@@ -53,7 +54,13 @@ public class PlayerFilterCommand {
         String value = isFilterExcluding ? "excludePlayers" : "includePlayers";
         Messages.SendSet(Objects.requireNonNull(c.getSource().getPlayer()),
             new ConfCommand.Property<>("playerFilterType", value));
-        return 0;
+        return 1;
+    }
+    private static int ResetType(@NotNull CommandContext<CommandSourceStack> c) {
+        isFilterExcluding = true;
+        Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
+            new ConfCommand.Property<>("playerFilterType", true));
+        return 1;
     }
     private static int GetType(@NotNull CommandContext<CommandSourceStack> c) {
         String value = isFilterExcluding ? "excludePlayers" : "includePlayers";
@@ -70,7 +77,7 @@ public class PlayerFilterCommand {
         return 1;
     }
     private static int ResetSelector(@NotNull CommandContext<CommandSourceStack> c) {
-        appliedFilter = null; isFilterExcluding = true;
+        appliedFilter = null;
         Messages.SendReset(Objects.requireNonNull(c.getSource().getPlayer()),
             new ConfCommand.Property<>("playerFilterSelector", "null (don't filter)"));
         return 1;
