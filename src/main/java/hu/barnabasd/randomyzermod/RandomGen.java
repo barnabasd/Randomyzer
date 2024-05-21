@@ -1,14 +1,12 @@
-package hu.barnabasd.randomyzermod.filtering;
+package hu.barnabasd.randomyzermod;
 
-import hu.barnabasd.randomyzermod.MainMod;
-
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.server.level.ServerPlayer;
+import hu.barnabasd.randomyzermod.config.Setting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
-
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -26,9 +24,9 @@ public class RandomGen {
     }
 
     public static void RunCycle(MinecraftServer server) {
-        List<ServerPlayer> players = PlayerFilterCommand.GetFilteredPlayers(server);
-        GenType type = (GenType) MainMod.Options.get(1).Value;
-        int itemCount = (int)MainMod.Options.get(2).Value;
+        List<ServerPlayer> players = PlayerFiltering.GetFilteredPlayers(server);
+        GenType type = (GenType)Setting.GetSettingByName("ItemDistributionMethod").Value;
+        int itemCount = (int)Setting.GetSettingByName("ItemQuantity").Value;
 
         if (type == GenType.random_individual) {
             for (ServerPlayer player : players)

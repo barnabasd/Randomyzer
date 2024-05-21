@@ -1,24 +1,22 @@
-package hu.barnabasd.randomyzermod.filtering;
+package hu.barnabasd.randomyzermod;
 
-import hu.barnabasd.randomyzermod.userinterface.Messages;
-import hu.barnabasd.randomyzermod.ConfCommand;
-
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import net.minecraft.commands.arguments.EntityArgument;
-import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.MinecraftServer;
 import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.context.CommandContext;
+import hu.barnabasd.randomyzermod.config.Setting;
+import hu.barnabasd.randomyzermod.display.Messages;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
 
 @SuppressWarnings("SameReturnValue")
-public class PlayerFilterCommand {
+public class PlayerFiltering {
 
     public static List<ServerPlayer> GetFilteredPlayers(@NotNull MinecraftServer server) {
         List<ServerPlayer> selectedPlayers = List.of();
@@ -38,12 +36,12 @@ public class PlayerFilterCommand {
 
     public static void CreateCommand(@NotNull LiteralArgumentBuilder<CommandSourceStack> command) {
         command.then(Commands.literal("players")
-            .then(Commands.literal("selector").executes(PlayerFilterCommand::GetSelector)
-                .then(Commands.literal("reset").executes(PlayerFilterCommand::ResetSelector))
+            .then(Commands.literal("selector").executes(PlayerFiltering::GetSelector)
+                .then(Commands.literal("reset").executes(PlayerFiltering::ResetSelector))
                 .then(Commands.literal("set").then(Commands.argument("selector", EntityArgument.players())
-                        .executes(PlayerFilterCommand::SetSelector))))
-            .then(Commands.literal("type").executes(PlayerFilterCommand::GetType)
-                .then(Commands.literal("reset").executes(PlayerFilterCommand::ResetType))
+                        .executes(PlayerFiltering::SetSelector))))
+            .then(Commands.literal("type").executes(PlayerFiltering::GetType)
+                .then(Commands.literal("reset").executes(PlayerFiltering::ResetType))
                 .then(Commands.literal("set")
                     .then(Commands.literal("excludePlayers").executes(c -> SetType(c, true)))
                     .then(Commands.literal("includePlayers").executes(c -> SetType(c, false))))));
@@ -53,19 +51,19 @@ public class PlayerFilterCommand {
         isFilterExcluding = newValue;
         String value = isFilterExcluding ? "excludePlayers" : "includePlayers";
         Messages.SendSet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new ConfCommand.Property<>("playerFilterType", value));
+            new Setting<>("playerFilterType", value));
         return 1;
     }
     private static int ResetType(@NotNull CommandContext<CommandSourceStack> c) {
         isFilterExcluding = true;
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new ConfCommand.Property<>("playerFilterType", true));
+            new Setting<>("playerFilterType", true));
         return 1;
     }
     private static int GetType(@NotNull CommandContext<CommandSourceStack> c) {
         String value = isFilterExcluding ? "excludePlayers" : "includePlayers";
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new ConfCommand.Property<>("playerFilterType", value));
+            new Setting<>("playerFilterType", value));
         return 1;
     }
 
@@ -73,19 +71,19 @@ public class PlayerFilterCommand {
         String selectorString = c.getInput().split(" ")[c.getInput().split(" ").length - 1];
         appliedFilter = selectorString;
         Messages.SendSet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new ConfCommand.Property<>("playerFilterSelector", selectorString));
+            new Setting<>("playerFilterSelector", selectorString));
         return 1;
     }
     private static int ResetSelector(@NotNull CommandContext<CommandSourceStack> c) {
         appliedFilter = null;
         Messages.SendReset(Objects.requireNonNull(c.getSource().getPlayer()),
-            new ConfCommand.Property<>("playerFilterSelector", "null (don't filter)"));
+            new Setting<>("playerFilterSelector", "null (don't filter)"));
         return 1;
     }
     private static int GetSelector(@NotNull CommandContext<CommandSourceStack> c) {
         String value = (appliedFilter == null) ? "null (don't filter)" : appliedFilter;
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new ConfCommand.Property<>("playerFilterSelector", value));
+            new Setting<>("playerFilterSelector", value));
         return 1;
     }
 

@@ -7,9 +7,9 @@
 # Configuration
 | Command                                   | Action                                                        |
 |-------------------------------------------|---------------------------------------------------------------|
-| `/randomyzer config <property>`           | Gets the value of `<property>`.                               |
-| `/randomyzer config <property> reset`     | Resets the value of `<property>`.                             |
-| `/randomyzer config <property> set <...>` | Sets the value of `<property>`. Possible values listed below. |
+| `/randomyzer config <setting>`           | Gets the value of `<setting>`.                               |
+| `/randomyzer config <setting> reset`     | Resets the value of `<setting>`.                             |
+| `/randomyzer config <setting> set <...>` | Sets the value of `<setting>`. Possible values listed below. |
 # Properties
 | Property         | Default Value     | Explanation                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
