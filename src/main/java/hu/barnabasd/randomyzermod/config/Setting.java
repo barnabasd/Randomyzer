@@ -6,20 +6,19 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class Setting<T> {
-    public final T Reset;
     public final Callback OnValueUpdate;
     public final String Name;
+    public final T Reset;
     public T Value;
+
     public Setting(String name, T value, Callback onValueUpdate) {
-        Value = Reset = value;
-        Name = name;
+        Value = Reset = value; Name = name;
         OnValueUpdate = onValueUpdate;
     }
-
     public Setting(String name, T value) {
         Value = Reset = value;
-        Name = name;
         OnValueUpdate = null;
+        Name = name;
     }
 
     public static @NotNull Setting<?> GetSettingByName(String name) {
