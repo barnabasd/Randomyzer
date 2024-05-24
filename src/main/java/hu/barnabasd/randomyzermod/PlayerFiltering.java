@@ -18,6 +18,9 @@ import java.util.Objects;
 @SuppressWarnings("SameReturnValue")
 public class PlayerFiltering {
 
+    public static boolean isFilterExcluding = true;
+    public static String appliedFilter = null;
+
     public static List<ServerPlayer> GetFilteredPlayers(@NotNull MinecraftServer server) {
         List<ServerPlayer> selectedPlayers = List.of();
         List<ServerPlayer> correctlyFiltered = selectedPlayers;
@@ -25,26 +28,27 @@ public class PlayerFiltering {
         try {
             selectedPlayers = EntityArgument.players().parse(new StringReader(appliedFilter))
                 .findPlayers(server.createCommandSourceStack());
-        } catch (Exception ignored) { correctlyFiltered = allPlayers; }
+        } catch (Exception ignored) {
+            correctlyFiltered = allPlayers;
+        }
         if (!isFilterExcluding && appliedFilter != null)
             correctlyFiltered = allPlayers.stream().filter(selectedPlayers::contains).toList();
         return correctlyFiltered;
     }
 
-    public static boolean isFilterExcluding = true;
-    public static String appliedFilter = null;
-
-    public static void CreateCommand(@NotNull LiteralArgumentBuilder<CommandSourceStack> command) {
+    public static @NotNull LiteralArgumentBuilder<CommandSourceStack> CreateCommand() {
+        LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("filters");
         command.then(Commands.literal("players")
             .then(Commands.literal("selector").executes(PlayerFiltering::GetSelector)
                 .then(Commands.literal("reset").executes(PlayerFiltering::ResetSelector))
                 .then(Commands.literal("set").then(Commands.argument("selector", EntityArgument.players())
-                        .executes(PlayerFiltering::SetSelector))))
+                    .executes(PlayerFiltering::SetSelector))))
             .then(Commands.literal("type").executes(PlayerFiltering::GetType)
                 .then(Commands.literal("reset").executes(PlayerFiltering::ResetType))
                 .then(Commands.literal("set")
                     .then(Commands.literal("excludePlayers").executes(c -> SetType(c, true)))
                     .then(Commands.literal("includePlayers").executes(c -> SetType(c, false))))));
+        return command;
     }
 
     private static int SetType(@NotNull CommandContext<CommandSourceStack> c, boolean newValue) {
@@ -54,12 +58,14 @@ public class PlayerFiltering {
             new Setting<>("playerFilterType", value));
         return 1;
     }
+
     private static int ResetType(@NotNull CommandContext<CommandSourceStack> c) {
         isFilterExcluding = true;
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
             new Setting<>("playerFilterType", true));
         return 1;
     }
+
     private static int GetType(@NotNull CommandContext<CommandSourceStack> c) {
         String value = isFilterExcluding ? "excludePlayers" : "includePlayers";
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
@@ -74,12 +80,14 @@ public class PlayerFiltering {
             new Setting<>("playerFilterSelector", selectorString));
         return 1;
     }
+
     private static int ResetSelector(@NotNull CommandContext<CommandSourceStack> c) {
         appliedFilter = null;
         Messages.SendReset(Objects.requireNonNull(c.getSource().getPlayer()),
             new Setting<>("playerFilterSelector", "null (don't filter)"));
         return 1;
     }
+
     private static int GetSelector(@NotNull CommandContext<CommandSourceStack> c) {
         String value = (appliedFilter == null) ? "null (don't filter)" : appliedFilter;
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
