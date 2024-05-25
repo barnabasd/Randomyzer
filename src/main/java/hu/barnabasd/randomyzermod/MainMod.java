@@ -38,6 +38,7 @@ public class MainMod {
     @SubscribeEvent
     public void onCommandRegister(@NotNull RegisterCommandsEvent event) {
         LiteralArgumentBuilder<CommandSourceStack> mainCommand = Commands.literal("randomyzer")
+            .requires(x -> x.hasPermission(4))
             .then(Configuration.CreateCommand())
             .then(PlayerFiltering.CreateCommand())
             .then(Commands.literal("toggle").executes(c -> {
