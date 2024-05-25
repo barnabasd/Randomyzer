@@ -46,14 +46,14 @@ public class PlayerFiltering {
             .then(Commands.literal("type").executes(PlayerFiltering::GetType)
                 .then(Commands.literal("reset").executes(PlayerFiltering::ResetType))
                 .then(Commands.literal("set")
-                    .then(Commands.literal("excludePlayers").executes(c -> SetType(c, true)))
-                    .then(Commands.literal("includePlayers").executes(c -> SetType(c, false))))));
+                    .then(Commands.literal("exclude").executes(c -> SetType(c, true)))
+                    .then(Commands.literal("include").executes(c -> SetType(c, false))))));
         return command;
     }
 
     private static int SetType(@NotNull CommandContext<CommandSourceStack> c, boolean newValue) {
         isFilterExcluding = newValue;
-        String value = isFilterExcluding ? "excludePlayers" : "includePlayers";
+        String value = isFilterExcluding ? "exclude" : "include";
         Messages.SendSet(Objects.requireNonNull(c.getSource().getPlayer()),
             new Setting<>("playerFilterType", value));
         return 1;

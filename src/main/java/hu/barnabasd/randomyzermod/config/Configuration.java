@@ -26,7 +26,7 @@ public class Configuration {
             else if (Option.Value instanceof Boolean)
                 set.then(Commands.argument("value", BoolArgumentType.bool()).executes(c -> SetBoolProperty(c, Option)));
             else if (Option instanceof SelectionSetting<?, ?> propertyData) {
-                for (Enum<?> property : ((Enum<?>[]) propertyData.AvailibleOptions))
+                for (Enum<?> property : ((Enum<?>[]) propertyData.AvailableOptions))
                     set.then(Commands.literal(property.name()).executes(c -> SetParameterProperty(c, propertyData)));
             }
             propertyCommand.then(set);
@@ -38,24 +38,24 @@ public class Configuration {
 
     private static int SetParameterProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull SelectionSetting<?, ?> option) {
         String newProperty = c.getInput().split(" ")[c.getInput().split(" ").length - 1];
-        Enum<?> newActualProperty = Arrays.stream(((Enum<?>[]) option.AvailibleOptions))
-            .filter(x -> x.name().equals(newProperty)).findAny().get();
+        Enum<?> newActualProperty = Arrays.stream(((Enum<?>[]) option.AvailableOptions))
+            .filter(x -> x.name().equals(newProperty)).findAny().orElse(null);
         option.setValue(newActualProperty);
         if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
     }
-
+    @SuppressWarnings("unchecked")
     private static int SetBoolProperty(CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
         if (!(option.Value instanceof Boolean)) return 0;
-        Setting<Boolean> setting = (Setting<Boolean>) option;
+        Setting<Boolean> setting = (Setting<Boolean>)option;
         setting.setValue(BoolArgumentType.getBool(c, "value"));
         if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
     }
-
+    @SuppressWarnings("unchecked")
     private static int SetIntProperty(CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
         if (!(option.Value instanceof Integer)) return 0;
-        Setting<Integer> setting = (Setting<Integer>) option;
+        Setting<Integer> setting = (Setting<Integer>)option;
         setting.setValue(IntegerArgumentType.getInteger(c, "value"));
         if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
@@ -66,7 +66,6 @@ public class Configuration {
         if (c.getSource().getPlayer() != null) Messages.SendReset(c.getSource().getPlayer(), option);
         return 1;
     }
-
     private static int GetProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
         if (c.getSource().getPlayer() != null) Messages.SendGet(c.getSource().getPlayer(), option);
         return 1;

@@ -46,7 +46,7 @@ public class RandomGen {
                 player.getInventory().add(item);
         } else {
             for (ServerPlayer player : players)
-                player.sendSystemMessage(Component.literal("An internal error occoured when trying to give items."));
+                player.sendSystemMessage(Component.literal("An internal error occurred when trying to give items."));
         }
     }
 

@@ -22,7 +22,7 @@ public class CountdownDisplay {
             RandomGen.RunCycle(event.getServer());
             CountDownTicks = (int) Setting.GetSettingByName("TimerDuration").Value * 20;
         }
-        if (Setting.GetSettingByName("TimerDsiplayMode").Value != DisplayStyle.hidden)
+        if (Setting.GetSettingByName("TimerDisplayMode").Value != DisplayStyle.hidden)
             DisplayCountdown(event.getServer());
         else {
             bossbar.removeAllPlayers();
@@ -34,12 +34,12 @@ public class CountdownDisplay {
     }
 
     public static void DisplayCountdown(MinecraftServer server) {
-        DisplayStyle style = (DisplayStyle) Setting.GetSettingByName("TimerDsiplayMode").Value;
+        DisplayStyle style = (DisplayStyle) Setting.GetSettingByName("TimerDisplayMode").Value;
 
         if (style == DisplayStyle.bossbar) DisplayBossbar(server);
         if (style == DisplayStyle.actionbar_text) DisplayActionBarAsText(server);
         if (style == DisplayStyle.actionbar_progressbar) DisplayActionBarAsProgress(server);
-        if (style == DisplayStyle.expriencebar) DisplayExperiencebar(server);
+        if (style == DisplayStyle.experience) DisplayExperience(server);
     }
 
     private static void DisplayBossbar(MinecraftServer server) {
@@ -62,7 +62,7 @@ public class CountdownDisplay {
     }
 
     private static void DisplayActionBarAsText(@NotNull MinecraftServer server) {
-        Component text = Component.literal("§6" + ((CountDownTicks / 20) + 1) + " §rseconds remaining");
+        Component text = Component.literal("§6" + ((CountDownTicks / 20) + 1) + "§r seconds remaining");
         server.getPlayerList().getPlayers().forEach(x -> x.displayClientMessage(text, true));
     }
 
@@ -78,7 +78,7 @@ public class CountdownDisplay {
         server.getPlayerList().getPlayers().forEach(x -> x.displayClientMessage(Component.literal(finalText), true));
     }
 
-    private static void DisplayExperiencebar(@NotNull MinecraftServer server) {
+    private static void DisplayExperience(@NotNull MinecraftServer server) {
         int maxTicks = (int) Setting.GetSettingByName("TimerDuration").Value * 20;
         int remainingTicks = maxTicks - CountDownTicks;
         float progress = (float) remainingTicks / maxTicks;
@@ -88,6 +88,6 @@ public class CountdownDisplay {
         });
     }
 
-    public enum DisplayStyle {bossbar, actionbar_text, actionbar_progressbar, expriencebar, hidden}
+    public enum DisplayStyle {bossbar, actionbar_text, actionbar_progressbar, experience, hidden}
 
 }
