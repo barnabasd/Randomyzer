@@ -24,13 +24,17 @@ public class CountdownDisplay {
         }
         if (Setting.GetSettingByName("TimerDisplayMode").Value != DisplayStyle.hidden)
             DisplayCountdown(event.getServer());
-        else {
-            bossbar.removeAllPlayers();
-            event.getServer().getPlayerList().getPlayers().forEach(x -> {
-                x.setExperiencePoints(0);
-                x.setExperienceLevels(0);
-            });
-        }
+        else ClearDisplays(event.getServer());
+
+    }
+
+    public static void ClearDisplays(@NotNull MinecraftServer server) {
+        bossbar.removeAllPlayers();
+        server.getPlayerList().getPlayers().forEach(x -> {
+            x.setExperienceLevels(0);
+            x.setExperiencePoints(0);
+            x.displayClientMessage(Component.empty(), true);
+        });
     }
 
     public static void DisplayCountdown(MinecraftServer server) {

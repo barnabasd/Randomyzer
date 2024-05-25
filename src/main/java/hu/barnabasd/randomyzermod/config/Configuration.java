@@ -40,7 +40,7 @@ public class Configuration {
         String newProperty = c.getInput().split(" ")[c.getInput().split(" ").length - 1];
         Enum<?> newActualProperty = Arrays.stream(((Enum<?>[]) option.AvailableOptions))
             .filter(x -> x.name().equals(newProperty)).findAny().orElse(null);
-        option.setValue(newActualProperty);
+        option.setValue(newActualProperty, c);
         if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
     }
@@ -48,7 +48,7 @@ public class Configuration {
     private static int SetBoolProperty(CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
         if (!(option.Value instanceof Boolean)) return 0;
         Setting<Boolean> setting = (Setting<Boolean>)option;
-        setting.setValue(BoolArgumentType.getBool(c, "value"));
+        setting.setValue(BoolArgumentType.getBool(c, "value"), c);
         if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
     }
@@ -56,7 +56,7 @@ public class Configuration {
     private static int SetIntProperty(CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
         if (!(option.Value instanceof Integer)) return 0;
         Setting<Integer> setting = (Setting<Integer>)option;
-        setting.setValue(IntegerArgumentType.getInteger(c, "value"));
+        setting.setValue(IntegerArgumentType.getInteger(c, "value"), c);
         if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
     }

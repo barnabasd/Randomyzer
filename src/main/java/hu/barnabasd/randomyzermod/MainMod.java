@@ -20,8 +20,9 @@ import java.util.List;
 public class MainMod {
 
     public static final List<Setting<?>> Options = List.of(
-        new SelectionSetting<>("TimerDisplayMode", CountdownDisplay.DisplayStyle.bossbar, CountdownDisplay.DisplayStyle.values()),
-        new Setting<>("ItemQuantity", 1), new Setting<>("TimerDuration", 20, (x) -> CountdownDisplay.CountDownTicks = (int) x),
+        new SelectionSetting<>("TimerDisplayMode", CountdownDisplay.DisplayStyle.bossbar, CountdownDisplay.DisplayStyle.values(),
+                (x, y) -> CountdownDisplay.ClearDisplays(y.getSource().getServer())),
+        new Setting<>("ItemQuantity", 1), new Setting<>("TimerDuration", 20, (x, y) -> CountdownDisplay.CountDownTicks = x),
         new SelectionSetting<>("ItemDistributionMethod", RandomGen.GenType.random_individual, RandomGen.GenType.values())
     );
 
