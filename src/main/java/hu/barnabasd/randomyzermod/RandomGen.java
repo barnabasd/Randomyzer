@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,9 +35,9 @@ public class RandomGen {
             for (ServerPlayer player : players)
                 player.getInventory().add(GetItem(itemCount));
         } else if (type == GenType.random_shared) {
-            ItemStack[] items = new ItemStack[itemCount];
+            List<ItemStack> items = new ArrayList<>();
             for (int i = 0; i < itemCount; i++)
-                items[i] = GetItem(1);
+                items.add(GetItem(1));
             for (ServerPlayer player : players)
                 for (ItemStack item : items)
                     player.getInventory().add(item);

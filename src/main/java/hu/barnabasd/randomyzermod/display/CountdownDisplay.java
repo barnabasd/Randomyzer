@@ -28,13 +28,14 @@ public class CountdownDisplay {
 
     }
 
-    public static void ClearDisplays(@NotNull MinecraftServer server) {
+    public static int ClearDisplays(@NotNull MinecraftServer server) {
         bossbar.removeAllPlayers();
         server.getPlayerList().getPlayers().forEach(x -> {
             x.setExperienceLevels(0);
             x.setExperiencePoints(0);
             x.displayClientMessage(Component.empty(), true);
         });
+        return Integer.MIN_VALUE;
     }
 
     public static void DisplayCountdown(MinecraftServer server) {

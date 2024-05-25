@@ -28,11 +28,17 @@ public class Setting<T> {
             .findAny().orElse(new Setting<>("null", null));
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked") // Very bad code :D, but probably fine
     public void setValue(Object value, CommandContext<CommandSourceStack> c) {
-        Value = (T)value;
+        Object deferredValue = Integer.MIN_VALUE;
         if (OnValueUpdate != null)
-            OnValueUpdate.call(Value, c);
+            deferredValue = OnValueUpdate.call((T)value, Value, c);
+        if (deferredValue == (Object)Integer.MIN_VALUE) {
+            Value = (T)value;
+        }
+        else if (Value instanceof Integer) {
+            Value = (T)deferredValue;
+        }
     }
 
     public void resetValue() {
@@ -40,7 +46,7 @@ public class Setting<T> {
     }
 
     public interface Callback<T> {
-        void call(T newVal, CommandContext<CommandSourceStack> c);
+        int call(T newVal, T oldVal, CommandContext<CommandSourceStack> c);
     }
 
 }
