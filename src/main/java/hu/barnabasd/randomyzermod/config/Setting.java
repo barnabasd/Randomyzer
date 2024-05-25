@@ -1,6 +1,8 @@
 package hu.barnabasd.randomyzermod.config;
 
+import com.mojang.brigadier.context.CommandContext;
 import hu.barnabasd.randomyzermod.MainMod;
+import net.minecraft.commands.CommandSourceStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -27,10 +29,10 @@ public class Setting<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public void setValue(Object value) {
+    public void setValue(Object value, CommandContext<CommandSourceStack> c) {
         Value = (T)value;
         if (OnValueUpdate != null)
-            OnValueUpdate.call(Value);
+            OnValueUpdate.call(Value, c);
     }
 
     public void resetValue() {
@@ -38,7 +40,7 @@ public class Setting<T> {
     }
 
     public interface Callback<T> {
-        void call(T newVal);
+        void call(T newVal, CommandContext<CommandSourceStack> c);
     }
 
 }
