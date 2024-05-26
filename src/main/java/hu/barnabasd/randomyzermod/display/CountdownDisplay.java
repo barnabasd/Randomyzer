@@ -23,7 +23,7 @@ public class CountdownDisplay {
             RandomGen.RunCycle(event.getServer());
             CountDownTicks = (int) Setting.ByName(ProjectStrings.TimerSecondsId).getValue() * 20;
         }
-        if (Setting.ByName(ProjectStrings.TimerDisplayId).getValue() != DisplayStyle.hidden)
+        if (Setting.ByName(ProjectStrings.TimerDisplayId).getValue() != ProjectStrings.DisplayStyle.hidden)
             DisplayCountdown(event.getServer());
         else ClearDisplays(event.getServer());
 
@@ -39,12 +39,12 @@ public class CountdownDisplay {
     }
 
     public static void DisplayCountdown(MinecraftServer server) {
-        DisplayStyle style = (DisplayStyle) Setting.ByName(ProjectStrings.TimerDisplayId).getValue();
+        ProjectStrings.DisplayStyle style = (ProjectStrings.DisplayStyle) Setting.ByName(ProjectStrings.TimerDisplayId).getValue();
 
-        if (style == DisplayStyle.bossbar) DisplayBossbar(server);
-        if (style == DisplayStyle.actionbar_text) DisplayActionBarAsText(server);
-        if (style == DisplayStyle.actionbar_progressbar) DisplayActionBarAsProgress(server);
-        if (style == DisplayStyle.experience) DisplayExperience(server);
+        if (style == ProjectStrings.DisplayStyle.bossbar) DisplayBossbar(server);
+        if (style == ProjectStrings.DisplayStyle.actionbarAsText) DisplayActionBarAsText(server);
+        if (style == ProjectStrings.DisplayStyle.actionbarAsProgress) DisplayActionBarAsProgress(server);
+        if (style == ProjectStrings.DisplayStyle.experience) DisplayExperience(server);
     }
 
     private static void DisplayBossbar(MinecraftServer server) {
@@ -92,7 +92,5 @@ public class CountdownDisplay {
             player.experienceProgress = 100f - progress;
         });
     }
-
-    public enum DisplayStyle {bossbar, actionbar_text, actionbar_progressbar, experience, hidden}
 
 }

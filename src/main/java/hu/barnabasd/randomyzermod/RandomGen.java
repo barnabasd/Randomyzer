@@ -24,24 +24,24 @@ public class RandomGen {
 
     public static void RunCycle(MinecraftServer server) {
         List<ServerPlayer> players = PlayerFiltering.GetFilteredPlayers(server);
-        GenType type = (GenType) Setting.ByName(ProjectStrings.GiveTypeId).getValue();
+        ProjectStrings.DistributionType type = (ProjectStrings.DistributionType) Setting.ByName(ProjectStrings.GiveTypeId).getValue();
         int itemCount = (int) Setting.ByName(ProjectStrings.ItemCountId).getValue();
 
-        if (type == GenType.random_individual) {
+        if (type == ProjectStrings.DistributionType.randomMultipleItems) {
             for (ServerPlayer player : players)
                 for (int i = 0; i < itemCount; i++)
                     player.getInventory().add(GetItem(1));
-        } else if (type == GenType.uniform_individual) {
+        } else if (type == ProjectStrings.DistributionType.randomSameItem) {
             for (ServerPlayer player : players)
                 player.getInventory().add(GetItem(itemCount));
-        } else if (type == GenType.random_shared) {
+        } else if (type == ProjectStrings.DistributionType.sameMultipleItems) {
             List<ItemStack> items = new ArrayList<>();
             for (int i = 0; i < itemCount; i++)
                 items.add(GetItem(1));
             for (ServerPlayer player : players)
                 for (ItemStack item : items)
                     player.getInventory().add(item);
-        } else if (type == GenType.uniform_shared) {
+        } else if (type == ProjectStrings.DistributionType.sameSameItem) {
             ItemStack item = GetItem(itemCount);
             for (ServerPlayer player : players)
                 player.getInventory().add(item);
@@ -50,7 +50,5 @@ public class RandomGen {
                 player.sendSystemMessage(Component.literal("An internal error occurred when trying to give items."));
         }
     }
-
-    public enum GenType {random_individual, uniform_individual, random_shared, uniform_shared}
 
 }
