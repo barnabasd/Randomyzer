@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class MainMod {
 
     public MainMod() {
-        MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.addListener(this::onCommandRegister);
         MinecraftForge.EVENT_BUS.addListener(CountdownDisplay::onServerTick);
     }
 
