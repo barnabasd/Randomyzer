@@ -2,7 +2,6 @@ package hu.barnabasd.randomyzermod;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import hu.barnabasd.randomyzermod.config.Configuration;
-import hu.barnabasd.randomyzermod.config.SelectionSetting;
 import hu.barnabasd.randomyzermod.config.Setting;
 import hu.barnabasd.randomyzermod.display.CountdownDisplay;
 import net.minecraft.commands.CommandSourceStack;
@@ -19,17 +18,13 @@ import java.util.List;
 @Mod("randomyzermod")
 public class MainMod {
 
-    public static final List<Setting<?>> Options = List.of(
-        new SelectionSetting<>("TimerDisplayMode", CountdownDisplay.DisplayStyle.bossbar, CountdownDisplay.DisplayStyle.values(),
-                (x, y, z) -> CountdownDisplay.ClearDisplays(z.getSource().getServer())),
-        new Setting<>("ItemQuantity", 1, (x, y, z) -> ValidateMaxValue(x, y)), new Setting<>("TimerDuration", 20, (x, y, z) -> CountdownDisplay.CountDownTicks = x),
-        new SelectionSetting<>("ItemDistributionMethod", RandomGen.GenType.random_individual, RandomGen.GenType.values())
+    public static final List<Setting<?, ?>> Options = List.of(
+        new Setting<>("TimerDisplayMode", CountdownDisplay.DisplayStyle.bossbar, CountdownDisplay.DisplayStyle.values(),
+                (x, y) -> CountdownDisplay.ClearDisplays(x.getSource().getServer())),
+        new Setting<>("TimerDuration", 20, Integer.MAX_VALUE, (x, y) -> CountdownDisplay.CountDownTicks = y * 20),
+        new Setting<>("ItemQuantity", 1, 2304),
+        new Setting<>("ItemDistributionMethod", RandomGen.GenType.random_individual, RandomGen.GenType.values())
     );
-
-    private static int ValidateMaxValue(int newValue, int oldValue) {
-        if (newValue <= 2304) return newValue;
-        else return oldValue;
-    }
 
     public MainMod() {
         MinecraftForge.EVENT_BUS.register(this);

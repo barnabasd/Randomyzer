@@ -10,24 +10,22 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-
 @SuppressWarnings("SameReturnValue")
 public class Configuration {
 
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> CreateCommand() {
         LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("config");
-        for (Setting<?> Option : MainMod.Options) {
-            LiteralArgumentBuilder<CommandSourceStack> propertyCommand =
-                Commands.literal(Option.Name).executes(c -> GetProperty(c, Option));
+        for (Setting<?, ?> Option : MainMod.Options) {
+            LiteralArgumentBuilder<CommandSourceStack> propertyCommand = Commands.literal(Option.getName()).executes(c -> GetProperty(c, Option));
             LiteralArgumentBuilder<CommandSourceStack> set = Commands.literal("set");
-            if (Option.Value instanceof Integer)
-                set.then(Commands.argument("value", IntegerArgumentType.integer()).executes(c -> SetIntProperty(c, Option)));
-            else if (Option.Value instanceof Boolean)
+            if (Option.getValue() instanceof Integer)
+                set.then(Commands.argument("value", IntegerArgumentType.integer(1, (int)Option.getMaxValue())).executes(c -> SetIntProperty(c, Option)));
+            else if (Option.getValue() instanceof Boolean)
                 set.then(Commands.argument("value", BoolArgumentType.bool()).executes(c -> SetBoolProperty(c, Option)));
-            else if (Option instanceof SelectionSetting<?, ?> propertyData) {
-                for (Enum<?> property : ((Enum<?>[]) propertyData.AvailableOptions))
-                    set.then(Commands.literal(property.name()).executes(c -> SetParameterProperty(c, propertyData)));
+            else if (Option.getValue() instanceof Enum<?>) {
+                Setting<Enum<?>, Enum<?>[]> enumSetting = (Setting<Enum<?>, Enum<?>[]>)Option;
+                for (Enum<?> property : enumSetting.getMaxValue())
+                    set.then(Commands.literal(property.name()).executes(c -> SetParameterProperty(c, enumSetting, property)));
             }
             propertyCommand.then(set);
             propertyCommand.then(Commands.literal("reset").executes(c -> ResetProperty(c, Option)));
@@ -36,37 +34,35 @@ public class Configuration {
         return command;
     }
 
-    private static int SetParameterProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull SelectionSetting<?, ?> option) {
-        String newProperty = c.getInput().split(" ")[c.getInput().split(" ").length - 1];
-        Enum<?> newActualProperty = Arrays.stream(((Enum<?>[]) option.AvailableOptions))
-            .filter(x -> x.name().equals(newProperty)).findAny().orElse(null);
-        option.setValue(newActualProperty, c);
-        if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
+    private static int SetParameterProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull Setting<Enum<?>, Enum<?>[]> option, @NotNull Enum<?> value) {
+        option.setValue(value, c);
+        if (c.getSource().getPlayer() != null)
+            Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
     }
-    @SuppressWarnings("unchecked")
-    private static int SetBoolProperty(CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
-        if (!(option.Value instanceof Boolean)) return 0;
-        Setting<Boolean> setting = (Setting<Boolean>)option;
+    private static int SetBoolProperty(CommandContext<CommandSourceStack> c, @NotNull Setting<?, ?> option) {
+        if (!(option.getValue() instanceof Boolean)) return 0;
+        Setting<Boolean, ?> setting = (Setting<Boolean, ?>)option;
         setting.setValue(BoolArgumentType.getBool(c, "value"), c);
-        if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
+        if (c.getSource().getPlayer() != null)
+            Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
     }
-    @SuppressWarnings("unchecked")
-    private static int SetIntProperty(CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
-        if (!(option.Value instanceof Integer)) return 0;
-        Setting<Integer> setting = (Setting<Integer>)option;
+    private static int SetIntProperty(CommandContext<CommandSourceStack> c, @NotNull Setting<?, ?> option) {
+        if (!(option.getValue() instanceof Integer)) return 0;
+        Setting<Integer, ?> setting = (Setting<Integer, ?>)option;
         setting.setValue(IntegerArgumentType.getInteger(c, "value"), c);
-        if (c.getSource().getPlayer() != null) Messages.SendSet(c.getSource().getPlayer(), option);
+        if (c.getSource().getPlayer() != null)
+            Messages.SendSet(c.getSource().getPlayer(), option);
         return 1;
     }
 
-    private static int ResetProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
+    private static int ResetProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull Setting<?, ?> option) {
         option.resetValue();
         if (c.getSource().getPlayer() != null) Messages.SendReset(c.getSource().getPlayer(), option);
         return 1;
     }
-    private static int GetProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull Setting<?> option) {
+    private static int GetProperty(@NotNull CommandContext<CommandSourceStack> c, @NotNull Setting<?, ?> option) {
         if (c.getSource().getPlayer() != null) Messages.SendGet(c.getSource().getPlayer(), option);
         return 1;
     }

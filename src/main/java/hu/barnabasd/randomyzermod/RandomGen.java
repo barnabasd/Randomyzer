@@ -24,8 +24,8 @@ public class RandomGen {
 
     public static void RunCycle(MinecraftServer server) {
         List<ServerPlayer> players = PlayerFiltering.GetFilteredPlayers(server);
-        GenType type = (GenType) Setting.GetSettingByName("ItemDistributionMethod").Value;
-        int itemCount = (int) Setting.GetSettingByName("ItemQuantity").Value;
+        GenType type = (GenType) Setting.ByName("ItemDistributionMethod").getValue();
+        int itemCount = (int) Setting.ByName("ItemQuantity").getValue();
 
         if (type == GenType.random_individual) {
             for (ServerPlayer player : players)
