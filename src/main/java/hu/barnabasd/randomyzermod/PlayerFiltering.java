@@ -8,6 +8,7 @@ import hu.barnabasd.randomyzermod.display.Messages;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
@@ -22,19 +23,16 @@ public class PlayerFiltering {
     public static String appliedFilter = null;
 
     public static List<ServerPlayer> GetFilteredPlayers(@NotNull MinecraftServer server) {
-        // REWORK THIS FUNCTION
-        List<ServerPlayer> selectedPlayers = List.of();
-        List<ServerPlayer> correctlyFiltered = selectedPlayers;
-        List<ServerPlayer> allPlayers = server.getPlayerList().getPlayers();
+        List<ServerPlayer> argumentPlayers = List.of();
+        String filter = appliedFilter;
+        if (appliedFilter == null) filter = "@a";
         try {
-            selectedPlayers = EntityArgument.players().parse(new StringReader(appliedFilter))
-                .findPlayers(server.createCommandSourceStack());
-        } catch (Exception ignored) {
-            correctlyFiltered = allPlayers;
+            argumentPlayers = EntityArgument.players().parse(new StringReader(filter)).findPlayers(server.createCommandSourceStack());
         }
-        if (!isFilterExcluding && appliedFilter != null)
-            correctlyFiltered = allPlayers.stream().filter(selectedPlayers::contains).toList();
-        return correctlyFiltered;
+        catch (Exception ex) {
+            server.getPlayerList().getPlayers().forEach(x -> x.displayClientMessage(Component.literal("§4An internal error occurred!\n" + ex), false));
+        }
+        return argumentPlayers;
     }
 
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> CreateCommand() {
