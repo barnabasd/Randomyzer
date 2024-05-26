@@ -89,7 +89,7 @@ public class CountdownDisplay {
         float progress = (float) remainingTicks / maxTicks;
         server.getPlayerList().getPlayers().forEach(player -> {
             player.setExperienceLevels(maxTicks / 20 - remainingTicks / 20);
-            player.experienceProgress = 100f - progress;
+            player.experienceProgress = 1f - progress;
         });
     }
 
