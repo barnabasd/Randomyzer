@@ -1,7 +1,7 @@
 package hu.barnabasd.randomyzermod.config;
 
 import com.mojang.brigadier.context.CommandContext;
-import hu.barnabasd.randomyzermod.ConfigOptions;
+import hu.barnabasd.randomyzermod.ProjectStrings;
 import net.minecraft.commands.CommandSourceStack;
 
 import java.util.Objects;
@@ -55,6 +55,6 @@ public class Setting<T, Q> {
     }
 
     public static Setting<?, ?> ByName(String name) {
-        return ConfigOptions.Options.stream().filter(x -> Objects.equals(x.getName(), name)).findAny().orElse(new Setting<>("null", null, 0));
+        return ProjectStrings.Options.stream().filter(x -> Objects.equals(x.getName(), name)).findAny().orElse(new Setting<>("null", null, 0));
     }
 }

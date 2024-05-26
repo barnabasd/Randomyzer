@@ -21,18 +21,15 @@ public class MainMod {
 
     @SubscribeEvent
     public void onCommandRegister(@NotNull RegisterCommandsEvent event) {
-        LiteralArgumentBuilder<CommandSourceStack> mainCommand = Commands.literal("randomyzer")
+        LiteralArgumentBuilder<CommandSourceStack> mainCommand = Commands.literal(ProjectStrings.MainCommand)
             .requires(x -> x.hasPermission(4))
             .then(Configuration.CreateCommand())
-            .then(PlayerFiltering.CreateCommand())
-            .then(Commands.literal("toggle").executes(c -> {
-                CountdownDisplay.IsPaused = !CountdownDisplay.IsPaused;
-                return 1;
-            }))
-            .then(Commands.literal("give").executes(c -> {
-                RandomGen.RunCycle(c.getSource().getServer());
-                return 1;
-            }));
+            .then(Commands.literal(ProjectStrings.Filtering)
+                .then(PlayerFiltering.CreateCommand()))
+            .then(Commands.literal(ProjectStrings.StartStop).executes(c -> {
+                CountdownDisplay.IsPaused = !CountdownDisplay.IsPaused; return 1; }))
+            .then(Commands.literal(ProjectStrings.RunOnce).executes(c -> {
+                RandomGen.RunCycle(c.getSource().getServer()); return 1; }));
 
         event.getDispatcher().register(mainCommand);
     }

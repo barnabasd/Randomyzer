@@ -58,9 +58,8 @@ public class PlayerFiltering {
     }
 
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> CreateCommand() {
-        LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("filters");
-        command.then(Commands.literal("players")
-            .then(Commands.literal("selector").executes(PlayerFiltering::GetSelector)
+        LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("players");
+        command.then(Commands.literal("selector").executes(PlayerFiltering::GetSelector)
                 .then(Commands.literal("reset").executes(PlayerFiltering::ResetSelector))
                 .then(Commands.literal("set").then(Commands.argument("selector", EntityArgument.players())
                     .executes(PlayerFiltering::SetSelector))))
@@ -68,7 +67,7 @@ public class PlayerFiltering {
                 .then(Commands.literal("reset").executes(PlayerFiltering::ResetType))
                 .then(Commands.literal("set")
                     .then(Commands.literal("exclude").executes(c -> SetType(c, true)))
-                    .then(Commands.literal("include").executes(c -> SetType(c, false))))));
+                    .then(Commands.literal("include").executes(c -> SetType(c, false)))));
         return command;
     }
 

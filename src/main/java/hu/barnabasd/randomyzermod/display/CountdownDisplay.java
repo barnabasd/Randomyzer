@@ -1,6 +1,6 @@
 package hu.barnabasd.randomyzermod.display;
 
-import hu.barnabasd.randomyzermod.ConfigOptions;
+import hu.barnabasd.randomyzermod.ProjectStrings;
 import hu.barnabasd.randomyzermod.RandomGen;
 import hu.barnabasd.randomyzermod.config.Setting;
 import net.minecraft.network.chat.Component;
@@ -12,7 +12,7 @@ import net.minecraftforge.event.TickEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class CountdownDisplay {
-    public static int CountDownTicks = (int) Setting.ByName(ConfigOptions.TimerSecondsId).getValue() * 20;
+    public static int CountDownTicks = (int) Setting.ByName(ProjectStrings.TimerSecondsId).getValue() * 20;
     public static boolean IsPaused = true;
     private static ServerBossEvent bossbar = null;
 
@@ -21,9 +21,9 @@ public class CountdownDisplay {
         if (CountDownTicks > 1) CountDownTicks--;
         else {
             RandomGen.RunCycle(event.getServer());
-            CountDownTicks = (int) Setting.ByName(ConfigOptions.TimerSecondsId).getValue() * 20;
+            CountDownTicks = (int) Setting.ByName(ProjectStrings.TimerSecondsId).getValue() * 20;
         }
-        if (Setting.ByName(ConfigOptions.TimerDisplayId).getValue() != DisplayStyle.hidden)
+        if (Setting.ByName(ProjectStrings.TimerDisplayId).getValue() != DisplayStyle.hidden)
             DisplayCountdown(event.getServer());
         else ClearDisplays(event.getServer());
 
@@ -39,7 +39,7 @@ public class CountdownDisplay {
     }
 
     public static void DisplayCountdown(MinecraftServer server) {
-        DisplayStyle style = (DisplayStyle) Setting.ByName(ConfigOptions.TimerDisplayId).getValue();
+        DisplayStyle style = (DisplayStyle) Setting.ByName(ProjectStrings.TimerDisplayId).getValue();
 
         if (style == DisplayStyle.bossbar) DisplayBossbar(server);
         if (style == DisplayStyle.actionbar_text) DisplayActionBarAsText(server);
@@ -57,7 +57,7 @@ public class CountdownDisplay {
         bossbar.setPlayBossMusic(false);
 
         bossbar.setName(Component.literal(((CountDownTicks / 20) + 1) + " seconds remaining"));
-        int maxTicks = (int) Setting.ByName(ConfigOptions.TimerSecondsId).getValue() * 20;
+        int maxTicks = (int) Setting.ByName(ProjectStrings.TimerSecondsId).getValue() * 20;
         float progress = (float) CountDownTicks / maxTicks;
         bossbar.setProgress(progress);
 
@@ -73,7 +73,7 @@ public class CountdownDisplay {
 
     private static void DisplayActionBarAsProgress(@NotNull MinecraftServer server) {
         String text = "[";
-        int squareCount = (int)Math.nextDown(20 - (((float) CountDownTicks / ((int) Setting.ByName(ConfigOptions.TimerSecondsId).getValue() * 20)) * 20));
+        int squareCount = (int)Math.nextDown(20 - (((float) CountDownTicks / ((int) Setting.ByName(ProjectStrings.TimerSecondsId).getValue() * 20)) * 20));
         String squares = "■".repeat(Math.max(squareCount, 0));
         text += squares;
         text += "-".repeat(20 - (Math.max(squareCount, 0)));
@@ -84,7 +84,7 @@ public class CountdownDisplay {
     }
 
     private static void DisplayExperience(@NotNull MinecraftServer server) {
-        int maxTicks = (int) Setting.ByName(ConfigOptions.TimerSecondsId).getValue() * 20;
+        int maxTicks = (int) Setting.ByName(ProjectStrings.TimerSecondsId).getValue() * 20;
         int remainingTicks = maxTicks - CountDownTicks;
         float progress = (float) remainingTicks / maxTicks;
         server.getPlayerList().getPlayers().forEach(player -> {
