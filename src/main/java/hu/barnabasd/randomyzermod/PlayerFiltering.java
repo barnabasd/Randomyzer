@@ -19,20 +19,42 @@ import java.util.Objects;
 @SuppressWarnings("SameReturnValue")
 public class PlayerFiltering {
 
+    private static void Debug(Object data, @NotNull MinecraftServer server) {
+        server.getPlayerList().getPlayers().forEach(player -> {
+            player.displayClientMessage(Component.literal(String.valueOf(data)), false);
+        });
+    }
+
     public static boolean isFilterExcluding = true;
     public static String appliedFilter = null;
 
     public static List<ServerPlayer> GetFilteredPlayers(@NotNull MinecraftServer server) {
+        List<ServerPlayer> allPlayers = server.getPlayerList().getPlayers();
         List<ServerPlayer> argumentPlayers = List.of();
         String filter = appliedFilter;
         if (appliedFilter == null) filter = "@a";
+        Debug("TRUE FILTER = \"" + filter + "\"", server);
         try {
             argumentPlayers = EntityArgument.players().parse(new StringReader(filter)).findPlayers(server.createCommandSourceStack());
         }
         catch (Exception ex) {
-            server.getPlayerList().getPlayers().forEach(x -> x.displayClientMessage(Component.literal("§4An internal error occurred!\n" + ex), false));
+            allPlayers.forEach(x -> x.displayClientMessage(Component.literal("§4An internal error occurred!\n" + ex), false));
         }
-        return argumentPlayers;
+        Debug(argumentPlayers, server);
+        List<ServerPlayer> correctedList = argumentPlayers;
+        if (isFilterExcluding) {
+            Debug("isFilterExcluding == true", server);
+            try {
+                List<ServerPlayer> playersToExclude = argumentPlayers;
+                correctedList = allPlayers.stream().filter(x -> !playersToExclude.contains(x)).toList();
+            }
+            catch (Exception ex) {
+                allPlayers.forEach(x -> x.displayClientMessage(Component.literal("§4An internal error occurred!\n" + ex), false));
+            }
+        }
+        if (appliedFilter == null) correctedList = allPlayers;
+        Debug(correctedList, server);
+        return correctedList;
     }
 
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> CreateCommand() {
