@@ -22,6 +22,7 @@ public class PlayerFiltering {
     public static String appliedFilter = null;
 
     public static List<ServerPlayer> GetFilteredPlayers(@NotNull MinecraftServer server) {
+        // REWORK THIS FUNCTION
         List<ServerPlayer> selectedPlayers = List.of();
         List<ServerPlayer> correctlyFiltered = selectedPlayers;
         List<ServerPlayer> allPlayers = server.getPlayerList().getPlayers();
@@ -55,21 +56,21 @@ public class PlayerFiltering {
         isFilterExcluding = newValue;
         String value = isFilterExcluding ? "exclude" : "include";
         Messages.SendSet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new Setting<>("playerFilterType", value));
+            new Setting<>("playerFilterType", value, 0));
         return 1;
     }
 
     private static int ResetType(@NotNull CommandContext<CommandSourceStack> c) {
         isFilterExcluding = true;
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new Setting<>("playerFilterType", true));
+            new Setting<>("playerFilterType", true, 0));
         return 1;
     }
 
     private static int GetType(@NotNull CommandContext<CommandSourceStack> c) {
         String value = isFilterExcluding ? "excludePlayers" : "includePlayers";
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new Setting<>("playerFilterType", value));
+            new Setting<>("playerFilterType", value, 0));
         return 1;
     }
 
@@ -77,21 +78,21 @@ public class PlayerFiltering {
         String selectorString = c.getInput().split(" ")[c.getInput().split(" ").length - 1];
         appliedFilter = selectorString;
         Messages.SendSet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new Setting<>("playerFilterSelector", selectorString));
+            new Setting<>("playerFilterSelector", selectorString, 0));
         return 1;
     }
 
     private static int ResetSelector(@NotNull CommandContext<CommandSourceStack> c) {
         appliedFilter = null;
         Messages.SendReset(Objects.requireNonNull(c.getSource().getPlayer()),
-            new Setting<>("playerFilterSelector", "null (don't filter)"));
+            new Setting<>("playerFilterSelector", "null (don't filter)", 0));
         return 1;
     }
 
     private static int GetSelector(@NotNull CommandContext<CommandSourceStack> c) {
         String value = (appliedFilter == null) ? "null (don't filter)" : appliedFilter;
         Messages.SendGet(Objects.requireNonNull(c.getSource().getPlayer()),
-            new Setting<>("playerFilterSelector", value));
+            new Setting<>("playerFilterSelector", value, 0));
         return 1;
     }
 
