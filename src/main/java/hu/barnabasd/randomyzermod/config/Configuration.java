@@ -4,7 +4,7 @@ import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import hu.barnabasd.randomyzermod.MainMod;
+import hu.barnabasd.randomyzermod.ConfigOptions;
 import hu.barnabasd.randomyzermod.display.Messages;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -15,7 +15,7 @@ public class Configuration {
 
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> CreateCommand() {
         LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("config");
-        for (Setting<?, ?> Option : MainMod.Options) {
+        for (Setting<?, ?> Option : ConfigOptions.Options) {
             LiteralArgumentBuilder<CommandSourceStack> propertyCommand = Commands.literal(Option.getName()).executes(c -> GetProperty(c, Option));
             LiteralArgumentBuilder<CommandSourceStack> set = Commands.literal("set");
             if (Option.getValue() instanceof Integer)
