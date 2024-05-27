@@ -47,7 +47,7 @@
 </ul>
 <hr>
 <h3>Creators:</h3>
-Mod: barnabasd
+Programming: barnabasd
 <br>
 Idea, Curseforge/Github page: Valaki
 <hr>
