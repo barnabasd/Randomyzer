@@ -1,26 +1,55 @@
-![](https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/banner_big.jpg)
-# Basic Commands
-| Command              | Explanation                                 |
-|----------------------|---------------------------------------------|
-| `/randomyzer toggle` | Toggles if the countdown is active.         |
-| `/randomyzer cycle`  | Runs the cycle once with the set properties |
-# Configuration
-| Command                                  | Action                                                       |
-|------------------------------------------|--------------------------------------------------------------|
-| `/randomyzer config <setting>`           | Gets the value of `<setting>`.                               |
-| `/randomyzer config <setting> reset`     | Resets the value of `<setting>`.                             |
-| `/randomyzer config <setting> set <...>` | Sets the value of `<setting>`. Possible values listed below. |
-# Properties
-| Property         | Default Value     | Explanation                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|------------------|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `CountdownTime`  | 20 seconds        | Controls how much time should be between the cycles. (In seconds)                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `GiveAmount`     | One item          | Controls how many items each player gets.                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `CountdownStyle` | bossbar           | Possible values: <ul><li><code>bossbar</code> Uses a bossbar on the top of the screen</li><li><code>actionbar_text</code> Uses the actionbar like: "20 seconds remaining"</li><li><code>actionbar_progressbar</code> Uses the actionbar like: "[■■■■----------------]"</li><li><code>experience</code> Uses the experience bar and levels. (Careful because players can use the given experience!)</li><li><code>hidden</code> Hides all the countdowns.</li></ul> ||``|.|
-| `GiveBehaviour`  | random_individual | Examples down below                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-# GiveBehaviour Explanation
-| Name                 | Explanation                                                                                   |
-|----------------------|-----------------------------------------------------------------------------------------------|
-| `random_individual`  | Every player gets {GiveAmount} random different items.<br>Different for every player.         |
-| `uniform_individual` | Every player gets {GiveAmount} of one item.<br>Different for every player.                    |
-| `random_shared`      | Every player gets {GiveAmount} random different items.<br>Same random items for every player. |
-| `uniform_shared`     | Every player gets {GiveAmount} of one item.<br>Same random items for every player.            |
+<img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/header.jpg">
+<h2>Have you ever spent hours searching for a random item giver mod that works with forge mods? Well it's your lucky day then, because <i>Randomyzer</i> lends an easy and custimizable way to do just that!</h2>
+<h3>With features like:</h3>
+<ul>
+<li><b>Forge mod compatibility</b> - if you can spawn it's items with /give,  	<i>Randomyzer</i> will find them too</li>
+<li><b>Multiplayer compatibility</b> - only the server host has to download the mod, and the others can use it too</li>
+<li>A customizable <b>built in timer</b> that shows how much time is there until the next item drop</li>
+<li>A bunch of <b>customizable settings</b></li>
+<li>Some <b>commands</b>:</li>
+<ul>
+<li><b>/randomyzer toggle</b> to start and stop the timer</li>
+<li><b>/randomyzer give</b> to instantly trigger an item drop</li>
+<li><b>/randomyzer config</b> to access the settings</li>
+</ul>
+</ul>
+<hr>
+<h3>Settings (config)</h3>
+<ul>
+<li>/randomyzer config <b>itemQuantity</b>: changes how many items  are given to players</li>
+<li>/randomyzer config <b>itemDistribution</b>: determines how items are given to players (mostly matters if you change itemQuantity)</li>
+<ul>
+<li><b>randomMultipleItems</b> (default state): all players get separate items</li>
+<li><b>randomSameItem</b>: all players get seperate items, but only of 1 kind (e.g. one gets 2 buckets, other gets 2 shovels)</li>
+<li><b>sameMultipleItems</b>: all players get the same multiple items (e.g. all players get 1 bucket and 1 shovel)</li>
+<li><b>sameSameItem</b>: all players get multiple of the same one item (e.g. every player gets 2 buckets)</li>
+</ul>
+<li>/randomyzer config <b>timerDisplayMode</b>: switch between the timer's display options</li>
+<ul>
+<li><b>bossbar</b></li>
+<li><b>actionbarAsText</b>: text above hotbar</li>
+<li><b>actionbarAsProgress</b>: timer bar above hotbar</li>
+<li><b>experience</b>: XP bar</li>
+<li><b>hidden</b></li>
+</ul>
+<li>/randomyzer config <b>timerDuration</b>: set the timer speed (in seconds)</li>
+<li>/randomyzer config <b>filters</b>: choose which players get/don't get items</li>
+<ul>
+<li><b>players</b>: to be honest, I didn't even get how this works... it'll get reworked next update anyway</li>
+</ul>
+</ul>
+<hr>
+<h3>Future plans:</h3>
+<ul>
+<li>Item filters (by item type/mod)</li>
+<li>Player filter rework</li>
+<li>Sound effect when reciving item</li>
+</ul>
+<hr>
+<h3>Creators:</h3>
+Mod: barnabasd
+<br>
+Idea, Curseforge/Github page: Valaki
+<hr>
+<h3>Links:</h3>
+Curseforge: <a href=https://www.curseforge.com/minecraft/mc-mods/randomyzer>https://www.curseforge.com/minecraft/mc-mods/randomyzer</a>
