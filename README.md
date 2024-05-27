@@ -26,7 +26,7 @@
 </ul>
 <li>/randomyzer config <b>timerDisplayMode</b>: switch between the timer's display options</li>
 <ul>
-<li><b>bossbar</b></li>
+<li><b>bossbar</b> (default state)</li>
 <li><b>actionbarAsText</b>: text above hotbar</li>
 <li><b>actionbarAsProgress</b>: timer bar above hotbar</li>
 <li><b>experience</b>: XP bar</li>
