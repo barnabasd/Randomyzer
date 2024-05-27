@@ -33,24 +33,18 @@ public class RandomGen {
         } else if (type == ProjectStrings.DistributionType.randomSameItem) {
             for (ServerPlayer player : players)
                 player.getInventory().add(new ItemStack(GetItem()));
-            //
-            //
-            //
-        } else if (type == ProjectStrings.DistributionType.sameMultipleItems) { // !
+        } else if (type == ProjectStrings.DistributionType.sameMultipleItems) {
             List<Item> items = new ArrayList<>();
             for (int i = 0; i < itemCount; i++) {
                 items.add(GetItem());
             }
             for (Item item : items)
                 players.forEach(x -> x.getInventory().add(new ItemStack(item)));
-        } else if (type == ProjectStrings.DistributionType.sameSameItem) { // !
+        } else if (type == ProjectStrings.DistributionType.sameSameItem) {
             Item item = GetItem();
             for (ServerPlayer player : players) {
                 player.getInventory().add(new ItemStack(item, itemCount));
             }
-            //
-            //
-            //
         } else {
             for (ServerPlayer player : players)
                 player.sendSystemMessage(Component.literal("An internal error occurred when trying to give items."));
