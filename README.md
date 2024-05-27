@@ -48,10 +48,17 @@
 </ul>
 <hr>
 <h3>Questions&Answers</h3>
-<p><b>Q</b>: Will you backport the mod to X version?</p><br><p><b>A</b>: If enough people ask for it then yes, otherwise no.</p>
-<p><b>Q</b>: Will you update the mod to X version?</p><br><p><b>A</b>: Probably yes.</p>
-<p><b>Q</b>: Can I use this mod in my modpack?</p><br><p><b>A</b>: As long as you give credit for it, you can.</p>
-<p><b>Q</b>: Can I use this mod in my video?</p><br><p><b>A</b>: We would be happy if you did so, just give credit for it</p>
+<p><b>Q</b>: Will you backport the mod to X version?</p>
+<p><b>A</b>: If enough people ask for it then yes, otherwise no.</p>
+<br>
+<p><b>Q</b>: Will you update the mod to X version?</p>
+<p><b>A</b>: Probably yes.</p>
+<br>
+<p><b>Q</b>: Can I use this mod in my modpack?</p>
+<p><b>A</b>: As long as you give credit for it, you can.</p>
+<br>
+<p><b>Q</b>: Can I use this mod in my video?</p>
+<p><b>A</b>: We would be happy if you did so, just give credit for it</p>
 </ul>
 <hr>
 <h3>Creators:</h3>
