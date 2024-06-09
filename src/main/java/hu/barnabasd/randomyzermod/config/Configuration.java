@@ -10,7 +10,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings("SameReturnValue")
+@SuppressWarnings({"SameReturnValue", "unchecked"})
 public class Configuration {
 
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> CreateCommand() {

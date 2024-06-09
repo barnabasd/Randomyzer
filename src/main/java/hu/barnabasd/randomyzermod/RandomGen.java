@@ -1,9 +1,8 @@
 package hu.barnabasd.randomyzermod;
 
-import com.mojang.realmsclient.client.Request;
 import hu.barnabasd.randomyzermod.config.Setting;
+import hu.barnabasd.randomyzermod.filters.PlayerFiltering;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -32,8 +31,8 @@ public class RandomGen {
         player.getInventory().add(new ItemStack(item, lastStack));
     }
 
-    public static void RunCycle(MinecraftServer server) {
-        List<ServerPlayer> players = PlayerFiltering.GetFilteredPlayers(server);
+    public static void RunCycle() {
+        List<ServerPlayer> players = PlayerFiltering.availablePlayers;
         ProjectStrings.DistributionType type = (ProjectStrings.DistributionType) Setting.ByName(ProjectStrings.GiveTypeId).getValue();
         int itemCount = (int) Setting.ByName(ProjectStrings.ItemCountId).getValue();
 
@@ -57,6 +56,7 @@ public class RandomGen {
             for (ServerPlayer player : players)
                 player.sendSystemMessage(Component.literal("An internal error occurred when trying to give items."));
         }
+        CycleSounds.PlaySounds(players);
     }
 
 }

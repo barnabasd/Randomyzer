@@ -20,7 +20,7 @@ public class CountdownDisplay {
         if (event.phase != TickEvent.Phase.START || IsPaused) return;
         if (CountDownTicks > 1) CountDownTicks--;
         else {
-            RandomGen.RunCycle(event.getServer());
+            RandomGen.RunCycle();
             CountDownTicks = (int) Setting.ByName(ProjectStrings.TimerSecondsId).getValue() * 20;
         }
         if (Setting.ByName(ProjectStrings.TimerDisplayId).getValue() != ProjectStrings.DisplayStyle.hidden)

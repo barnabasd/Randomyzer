@@ -11,14 +11,16 @@ public class ProjectStrings {
         new Setting<>(ProjectStrings.TimerDisplayId, DisplayStyle.bossbar, DisplayStyle.values(),
                 (x, y) -> CountdownDisplay.ClearDisplays(x.getSource().getServer())),
         new Setting<>(ProjectStrings.TimerSecondsId, 20, Integer.MAX_VALUE, (x, y) -> CountdownDisplay.CountDownTicks = y * 20),
-        new Setting<>(ProjectStrings.ItemCountId, 1, 2304),
-        new Setting<>(ProjectStrings.GiveTypeId, DistributionType.randomMultipleItems, DistributionType.values())
+        new Setting<>(ProjectStrings.GiveTypeId, DistributionType.randomMultipleItems, DistributionType.values()),
+        new Setting<>(ProjectStrings.CycleSoundId, CycleSound.experience, CycleSound.values()),
+        new Setting<>(ProjectStrings.ItemCountId, 1, 2304)
     );
 
     public static final String GiveTypeId     = "itemDistribution",
                                TimerDisplayId = "timerDisplayMode",
                                TimerSecondsId = "timerDuration",
-                               ItemCountId    = "itemQuantity";
+                               ItemCountId    = "itemQuantity",
+                               CycleSoundId   = "cycleSound";
 
     public static final String MainCommand = "randomyzer",
                                Filtering   = "filters",
@@ -28,4 +30,5 @@ public class ProjectStrings {
 
     public enum DistributionType { randomMultipleItems, randomSameItem, sameMultipleItems, sameSameItem }
     public enum DisplayStyle { bossbar, actionbarAsText, actionbarAsProgress, experience, hidden }
+    public enum CycleSound { experience, itemPickup, none }
 }
