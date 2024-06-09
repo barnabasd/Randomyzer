@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class RandomGen {
-    public static final Collection<Item> Items = ForgeRegistries.ITEMS.getValues();
+    public static Collection<Item> Items = ForgeRegistries.ITEMS.getValues();
 
     public static @NotNull Item GetItem() {
         int itemIndex = (int)(Items.size() * Math.random());

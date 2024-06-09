@@ -15,12 +15,10 @@ public class Messages {
         player.sendSystemMessage(Component.literal("§6" + setting.getName() +
             "§r has been successfully set to: §6" + setting.getValue() + "§r."));
     }
-
     public static void SendReset(@NotNull ServerPlayer player, @NotNull Setting<?, ?> setting) {
         player.sendSystemMessage(Component.literal("§6" + setting.getName() +
             "§r has been successfully reset to: §6" + setting.getValue() + "§r."));
     }
-
     public static void SendGet(@NotNull ServerPlayer player, @NotNull Setting<?, ?> setting) {
         player.sendSystemMessage(Component.literal("§6" + setting.getName() +
             "§r is: §6" + setting.getValue() + "§r."));
@@ -32,5 +30,13 @@ public class Messages {
     public static void SendPlayerFilters(@NotNull ServerPlayer player, @NotNull List<ServerPlayer> filter) {
         Component msg = Component.empty(); for (Component x : filter.stream().map(Player::getName).toList())
             msg = msg.plainCopy().append(x); player.sendSystemMessage(msg);
+    }
+
+    public static void SendEmptyItemFilters(@NotNull ServerPlayer player) {
+        player.sendSystemMessage(Component.literal("There are no mods enabled to supply items."));
+    }
+    public static void SendItemFilters(@NotNull ServerPlayer player, @NotNull List<String> filter) {
+        StringBuilder msg = new StringBuilder(); for (String x : filter)
+            msg.append(x); player.sendSystemMessage(Component.literal(msg.toString()));
     }
 }

@@ -3,6 +3,7 @@ package hu.barnabasd.randomyzermod;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import hu.barnabasd.randomyzermod.config.Configuration;
 import hu.barnabasd.randomyzermod.display.CountdownDisplay;
+import hu.barnabasd.randomyzermod.filters.ItemFiltering;
 import hu.barnabasd.randomyzermod.filters.PlayerFiltering;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -11,7 +12,11 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forgespi.language.IModInfo;
 import org.jetbrains.annotations.NotNull;
 
 //    ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -39,6 +44,11 @@ public class MainMod {
         MinecraftForge.EVENT_BUS.addListener(this::onPlayerLogin);
         MinecraftForge.EVENT_BUS.addListener(this::onCommandRegister);
         MinecraftForge.EVENT_BUS.addListener(CountdownDisplay::onServerTick);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+    }
+
+    private void setup(final FMLCommonSetupEvent event) {
+        ItemFiltering.allModIds = ModList.get().getMods().stream().map(IModInfo::getModId).toList();
     }
 
     @SubscribeEvent
