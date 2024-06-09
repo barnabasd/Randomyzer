@@ -1,5 +1,6 @@
 package hu.barnabasd.randomyzermod;
 
+import com.mojang.realmsclient.client.Request;
 import hu.barnabasd.randomyzermod.config.Setting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -21,6 +22,16 @@ public class RandomGen {
         return (Item) Items.toArray()[itemIndex];
     }
 
+    public static void AddItemsToPlayerInv(@NotNull Item item, int count, ServerPlayer player) {
+        int maxStack = item.getMaxStackSize();
+        int stackCount = (count - (count % maxStack)) / maxStack;
+        int lastStack = count % maxStack;
+        for (int i = 0; i < stackCount; i++) {
+            player.getInventory().add(new ItemStack(item, maxStack));
+        }
+        player.getInventory().add(new ItemStack(item, lastStack));
+    }
+
     public static void RunCycle(MinecraftServer server) {
         List<ServerPlayer> players = PlayerFiltering.GetFilteredPlayers(server);
         ProjectStrings.DistributionType type = (ProjectStrings.DistributionType) Setting.ByName(ProjectStrings.GiveTypeId).getValue();
@@ -29,22 +40,19 @@ public class RandomGen {
         if (type == ProjectStrings.DistributionType.randomMultipleItems) {
             for (ServerPlayer player : players)
                 for (int i = 0; i < itemCount; i++)
-                    player.getInventory().add(new ItemStack(GetItem(), 1));
+                    AddItemsToPlayerInv(GetItem(), 1, player);
         } else if (type == ProjectStrings.DistributionType.randomSameItem) {
             for (ServerPlayer player : players)
-                player.getInventory().add(new ItemStack(GetItem()));
+                AddItemsToPlayerInv(GetItem(), itemCount, player);
         } else if (type == ProjectStrings.DistributionType.sameMultipleItems) {
             List<Item> items = new ArrayList<>();
-            for (int i = 0; i < itemCount; i++) {
-                items.add(GetItem());
-            }
+            for (int i = 0; i < itemCount; i++) items.add(GetItem());
             for (Item item : items)
-                players.forEach(x -> x.getInventory().add(new ItemStack(item)));
+                players.forEach(x -> AddItemsToPlayerInv(item, 1, x));
         } else if (type == ProjectStrings.DistributionType.sameSameItem) {
             Item item = GetItem();
-            for (ServerPlayer player : players) {
-                player.getInventory().add(new ItemStack(item, itemCount));
-            }
+            for (ServerPlayer player : players)
+                AddItemsToPlayerInv(item, itemCount, player);
         } else {
             for (ServerPlayer player : players)
                 player.sendSystemMessage(Component.literal("An internal error occurred when trying to give items."));
