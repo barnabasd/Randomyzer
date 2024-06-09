@@ -1,0 +1,7 @@
+Java Launcher: C:\Users\uglikbarnabas\.gradle\jdks\eclipse_adoptium-17-amd64-windows\jdk-17.0.11+9\bin\java.exe
+Arguments: '--inJar, C:\Users\uglikbarnabas\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.20-46.0.14\forge-1.20-46.0.14-injected.jar, --outJar, C:\Users\uglikbarnabas\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.20-46.0.14_mapped_official_1.20\forge-1.20-46.0.14_mapped_official_1.20.jar, --logFile, accesstransform.log, --atFile, B:\Projects\RandomyzerMod\build\_atJar_4\parent_at.cfg'
+Classpath:
+ - C:\Users\uglikbarnabas\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\accesstransformers\8.2.0\accesstransformers-8.2.0-fatjar.jar
+Working directory: B:\Projects\RandomyzerMod\build\_atJar_4
+Main class: net.minecraftforge.accesstransformer.TransformerProcessor
+====================================

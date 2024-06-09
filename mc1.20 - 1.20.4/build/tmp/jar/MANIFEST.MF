@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: randomyzermod
+Specification-Vendor: Barnabasd, Valaki
+Specification-Version: 1
+Implementation-Title: RandomyzerMod
+Implementation-Version: 2.2
+Implementation-Vendor: Barnabasd, Valaki
+Implementation-Timestamp: 2024-06-09T18:07:23+0200
+
