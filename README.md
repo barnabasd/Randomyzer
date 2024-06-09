@@ -58,7 +58,7 @@
 <p><b>A</b>: As long as you give credit for it, you can.</p>
 <br>
 <p><b>Q</b>: Can I use this mod in my video?</p>
-<p><b>A</b>: We would be happy if you did so, just give credit for it</p>
+<p><b>A</b>: We would be happy if you did so, just give credit for it.</p>
 </ul>
 <hr>
 <h3>Creators:</h3>
