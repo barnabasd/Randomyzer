@@ -29,24 +29,12 @@
 <ul>
     <li>/randomyzer config <b>itemQuantity</b>: changes how many items  are given to players</li>
     <li>/randomyzer config <b>itemDistribution</b>: determines how items are given to players (mostly matters if you change itemQuantity)</li>
-    <ul>
-        <li><b>randomMultipleItems</b> (default state): all players get separate items</li>
-        <li><b>randomSameItem</b>: all players get seperate items, but only of 1 kind (e.g. one gets 2 buckets, other gets 2 shovels)</li>
-        <li><b>sameMultipleItems</b>: all players get the same multiple items (e.g. all players get 1 bucket and 1 shovel)</li>
-        <li><b>sameSameItem</b>: all players get multiple of the same one item (e.g. every player gets 2 buckets)</li>
-    </ul>
     <li>/randomyzer config <b>timerDisplayMode</b>: switch between the timer's display options</li>
-    <ul>
-        <li><b>bossbar</b></li>
-        <li><b>actionbarAsText</b>: text above hotbar</li>
-        <li><b>actionbarAsProgress</b>: timer bar above hotbar</li>
-        <li><b>experience</b>: XP bar</li>
-        <li><b>hidden</b></li>
-    </ul>
     <li>/randomyzer config <b>timerDuration</b>: set the timer speed (in seconds)</li>
-    <li>/randomyzer config <b>filters</b>: choose which players get/don't get items</li>
+    <li>/randomyzer config <b>filters</b>:</li>
     <ul>
-        <li><b>players</b>: to be honest, I didn't even get how this works... it'll get reworked next update anyway</li>
+        <li><b>players</b>: controls what players get items</li>
+        <li><b>items</b>: controls what mod's items players can get</li>
     </ul>
 </ul>
 <hr>
