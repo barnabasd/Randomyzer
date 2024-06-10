@@ -48,9 +48,7 @@
 <hr>
 <h3>Future plans:</h3>
 <ul>
-<li>Item filters (by item type/mod)</li>
-<li>Player filter rework</li>
-<li>Sound effect when reciving item</li>
+<li>None currently. If you would like to see a feature added create an issue.</li>
 <li>Fixing bugs <b><i>(If you find a bug, please report it to us so we can fix it)</b></i></li>
 </ul>
 <hr>
