@@ -18,11 +18,11 @@
 </ul>
 <hr>
 <p align="center">
-    <a href="https://github.com/barnabasd/Randomyzer/wiki"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/Card1.png" alt="Card 1" width="100" height="100" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://www.curseforge.com/minecraft/mc-mods/randomyzermod"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/Card2.png" alt="Card 2" width="100" height="100" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://modrinth.com/mod/randomyzermod"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/Card3.png" alt="Card 3" width="100" height="100" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/barnabasd/Randomyzer"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/Card4.png" alt="Card 4" width="100" height="100" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/barnabasd/Randomyzer/issues/new"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/Card5.png" alt="Card 5" width="100" height="100" /></a>
+    <a href="https://github.com/barnabasd/Randomyzer/wiki"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_wiki.png" alt="Card 1" width="100" height="100" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.curseforge.com/minecraft/mc-mods/randomyzermod"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_cf.png" alt="Card 2" width="100" height="100" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://modrinth.com/mod/randomyzermod"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_modrinth.png" alt="Card 3" width="100" height="100" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/barnabasd/Randomyzer"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_gh.png" alt="Card 4" width="100" height="100" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/barnabasd/Randomyzer/issues/new"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_bug.png" alt="Card 5" width="100" height="100" /></a>
 </p>
 <hr>
 <h3>Settings (config)</h3>
