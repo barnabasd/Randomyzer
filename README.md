@@ -1,5 +1,5 @@
 <img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/header.jpg">
-<h2>Have you ever spent hours searching for a random item giver mod that works with forge mods? Well it's your lucky day then, because <i>Randomyzer</i> lends an easy and custimizable way to do just that!</h2>
+<h2>Have you ever spent hours searching for a random item giver mod that works with forge mods?<br>Well it's your lucky day then, because <i>Randomyzer</i> lends an easy and custimizable way to do just that!</h2>
 
 
 
