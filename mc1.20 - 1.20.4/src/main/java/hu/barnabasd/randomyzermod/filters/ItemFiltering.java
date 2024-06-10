@@ -16,8 +16,8 @@ import java.util.Objects;
 
 public class ItemFiltering {
 
-    private static List<String> enabledModIds = new ArrayList<>();
     public static List<String> allModIds = new ArrayList<>();
+    private static List<String> enabledModIds = allModIds;
 
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> CreateCommand() {
         LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("items");
