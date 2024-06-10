@@ -74,6 +74,3 @@
 Programming: barnabasd
 <br>
 Idea, Curseforge/Github page: Valaki
-<hr>
-<h3>Links:</h3>
-Curseforge: <a href=https://www.curseforge.com/minecraft/mc-mods/randomyzer>https://www.curseforge.com/minecraft/mc-mods/randomyzer</a>
