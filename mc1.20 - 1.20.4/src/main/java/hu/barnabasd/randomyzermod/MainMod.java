@@ -3,7 +3,7 @@ package hu.barnabasd.randomyzermod;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import hu.barnabasd.randomyzermod.config.Configuration;
 import hu.barnabasd.randomyzermod.display.CountdownDisplay;
-import hu.barnabasd.randomyzermod.filters.ItemFiltering;
+import hu.barnabasd.randomyzermod.filters.ItemFiltering_Old;
 import hu.barnabasd.randomyzermod.filters.PlayerFiltering;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -48,7 +48,7 @@ public class MainMod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        ItemFiltering.allModIds = ModList.get().getMods().stream().map(IModInfo::getModId).toList();
+        ItemFiltering_Old.allModIds = ModList.get().getMods().stream().map(IModInfo::getModId).toList();
     }
 
     @SubscribeEvent
@@ -58,7 +58,7 @@ public class MainMod {
             .then(Configuration.CreateCommand()
             .then(Commands.literal(ProjectStrings.Filtering)
                 .then(PlayerFiltering.CreateCommand())
-                .then(ItemFiltering.CreateCommand())))
+                .then(ItemFiltering_Old.CreateCommand())))
             .then(Commands.literal(ProjectStrings.StartStop).executes(c -> {
                 CountdownDisplay.IsPaused = !CountdownDisplay.IsPaused; return 1; }))
             .then(Commands.literal(ProjectStrings.RunOnce).executes(c -> {

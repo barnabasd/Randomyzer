@@ -1,0 +1,153 @@
+{
+  "minecraft:recipes/building_blocks/waxed_exposed_cut_copper_stairs_from_honeycomb": {
+    "criteria": {
+      "has_exposed_cut_copper_stairs": "2024-06-11 10:50:23 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/red_sandstone_stairs": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/chiseled_red_sandstone_from_red_sandstone_stonecutting": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/gold_ingot_from_blasting_nether_gold_ore": {
+    "criteria": {
+      "has_nether_gold_ore": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/smooth_red_sandstone": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/magenta_dye_from_blue_red_pink": {
+    "criteria": {
+      "has_pink_dye": "2024-06-11 10:50:28 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/chiseled_red_sandstone": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/red_sandstone_slab_from_red_sandstone_stonecutting": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/pink_candle": {
+    "criteria": {
+      "has_pink_dye": "2024-06-11 10:50:28 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "unlock_right_away": "2024-06-11 10:47:27 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/cut_red_sandstone_slab_from_red_sandstone_stonecutting": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/dye_pink_wool": {
+    "criteria": {
+      "has_needed_dye": "2024-06-11 10:50:28 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/dye_pink_bed": {
+    "criteria": {
+      "has_needed_dye": "2024-06-11 10:50:28 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/gold_ingot_from_smelting_nether_gold_ore": {
+    "criteria": {
+      "has_nether_gold_ore": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/magenta_dye_from_purple_and_pink": {
+    "criteria": {
+      "has_pink_dye": "2024-06-11 10:50:28 +0200"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:plains": "2024-06-11 10:47:29 +0200"
+    },
+    "done": false
+  },
+  "minecraft:recipes/building_blocks/cut_red_sandstone": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/red_sandstone_wall_from_red_sandstone_stonecutting": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/cut_red_sandstone_from_red_sandstone_stonecutting": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/dye_pink_carpet": {
+    "criteria": {
+      "has_needed_dye": "2024-06-11 10:50:28 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/red_sandstone_slab": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/pink_stained_glass_pane_from_glass_pane": {
+    "criteria": {
+      "has_pink_dye": "2024-06-11 10:50:28 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/red_sandstone_stairs_from_red_sandstone_stonecutting": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/pink_dye_from_peony": {
+    "criteria": {
+      "has_peony": "2024-06-11 10:50:28 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/red_sandstone_wall": {
+    "criteria": {
+      "has_red_sandstone": "2024-06-11 10:50:56 +0200"
+    },
+    "done": true
+  },
+  "DataVersion": 3463
+}
