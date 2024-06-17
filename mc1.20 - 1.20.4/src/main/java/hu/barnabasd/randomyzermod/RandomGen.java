@@ -25,38 +25,36 @@ public class RandomGen {
         int maxStack = item.getMaxStackSize();
         int stackCount = (count - (count % maxStack)) / maxStack;
         int lastStack = count % maxStack;
-        for (int i = 0; i < stackCount; i++) {
+        for (int i = 0; i < stackCount; i++)
             player.getInventory().add(new ItemStack(item, maxStack));
-        }
         player.getInventory().add(new ItemStack(item, lastStack));
     }
 
     public static void RunCycle() {
-        List<ServerPlayer> players = PlayerFiltering.availablePlayers;
         ProjectStrings.DistributionType type = (ProjectStrings.DistributionType) Setting.ByName(ProjectStrings.GiveTypeId).getValue();
         int itemCount = (int) Setting.ByName(ProjectStrings.ItemCountId).getValue();
 
         if (type == ProjectStrings.DistributionType.randomMultipleItems) {
-            for (ServerPlayer player : players)
+            for (ServerPlayer player : PlayerFiltering.availablePlayers)
                 for (int i = 0; i < itemCount; i++)
                     AddItemsToPlayerInv(GetItem(), 1, player);
         } else if (type == ProjectStrings.DistributionType.randomSameItem) {
-            for (ServerPlayer player : players)
+            for (ServerPlayer player : PlayerFiltering.availablePlayers)
                 AddItemsToPlayerInv(GetItem(), itemCount, player);
         } else if (type == ProjectStrings.DistributionType.sameMultipleItems) {
             List<Item> items = new ArrayList<>();
             for (int i = 0; i < itemCount; i++) items.add(GetItem());
             for (Item item : items)
-                players.forEach(x -> AddItemsToPlayerInv(item, 1, x));
+                PlayerFiltering.availablePlayers.forEach(x -> AddItemsToPlayerInv(item, 1, x));
         } else if (type == ProjectStrings.DistributionType.sameSameItem) {
             Item item = GetItem();
-            for (ServerPlayer player : players)
+            for (ServerPlayer player : PlayerFiltering.availablePlayers)
                 AddItemsToPlayerInv(item, itemCount, player);
         } else {
-            for (ServerPlayer player : players)
+            for (ServerPlayer player : PlayerFiltering.availablePlayers)
                 player.sendSystemMessage(Component.literal("An internal error occurred when trying to give items."));
         }
-        CycleSounds.PlaySounds(players);
+        CycleSounds.PlaySounds(PlayerFiltering.availablePlayers);
     }
 
 }

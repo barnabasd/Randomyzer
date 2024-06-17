@@ -37,6 +37,7 @@ public class Messages {
     }
     public static void SendItemFilters(@NotNull ServerPlayer player, @NotNull List<String> filter) {
         StringBuilder msg = new StringBuilder(); for (String x : filter)
-            msg.append(x); player.sendSystemMessage(Component.literal(msg.toString()));
+            msg.append(x).append(", ");
+        player.sendSystemMessage(Component.literal(msg.toString()));
     }
 }

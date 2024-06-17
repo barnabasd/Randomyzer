@@ -9,39 +9,23 @@ import org.jetbrains.annotations.NotNull;
 public class ItemFilteringUtil {
 
     //
-    // TODO implement reset, list
+    // TODO implement list
     //
 
     @Contract(pure = true)
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> GenerateAllowListCommand() {
-        LiteralArgumentBuilder<CommandSourceStack> allowListCommand = Commands.literal("allowList");
+        LiteralArgumentBuilder<CommandSourceStack> allowListCommand = Commands.literal("items");
         LiteralArgumentBuilder<CommandSourceStack> allowListRemover = Commands.literal("remove");
-        LiteralArgumentBuilder<CommandSourceStack> allowListAdder = Commands.literal("add");
+        LiteralArgumentBuilder<CommandSourceStack> allowListAppendr = Commands.literal("add");
 
         ItemFiltering.allowedItems.forEach(allowedItem -> {
-            allowListRemover.then(Commands.literal(allowedItem)
-                .executes(c -> ItemFiltering.AddToAllowList(c, allowedItem)));
-            allowListAdder.then(Commands.literal(allowedItem)
+            allowListRemover.then(Commands.literal(allowedItem.toString())
+                .executes(c -> ItemFiltering.ApndToAllowList(c, allowedItem)));
+            allowListAppendr.then(Commands.literal(allowedItem.toString())
                 .executes(c -> ItemFiltering.RmFromAllowList(c, allowedItem)));
         });
 
-        return allowListCommand;
+        return allowListCommand.then(allowListAppendr).then(allowListRemover)
+            .then(Commands.literal("reset").executes(ItemFiltering::ResetAllowList));
     }
-
-    @Contract(pure = true)
-    public static @NotNull LiteralArgumentBuilder<CommandSourceStack> GenerateDenyListCommand() {
-        LiteralArgumentBuilder<CommandSourceStack> denyListCommand = Commands.literal("denyList");
-        LiteralArgumentBuilder<CommandSourceStack> denyListRemover = Commands.literal("remove");
-        LiteralArgumentBuilder<CommandSourceStack> denyListAdder = Commands.literal("add");
-
-        ItemFiltering.deniedItems.forEach(deniedItem -> {
-            denyListRemover.then(Commands.literal(deniedItem)
-                .executes(c -> ItemFiltering.AddToDenyList(c, deniedItem)));
-            denyListAdder.then(Commands.literal(deniedItem)
-                .executes(c -> ItemFiltering.RmFromDenyList(c, deniedItem)));
-        });
-
-        return denyListCommand;
-    }
-
 }
