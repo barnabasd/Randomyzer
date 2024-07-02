@@ -19,20 +19,23 @@ public class Randomyzer {
     }
 
     private void onCommandRegister(@NotNull RegisterCommandsEvent event) {
-        event.getDispatcher().register(RandomyzerCommand.MAIN);
+        event.getDispatcher().register(RandomyzerCommand.MAIN.requires(x -> x.hasPermission(4)));
     }
 
     private void onServerTick(@NotNull TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.START || !IsTimerRunning) return;
         if (CountDownTicks > 1) CountDownTicks--;
         else {
-            ItemAlgorithms.Execute(event.getServer().getPlayerList().getPlayers());
+            ItemAlgorithms.Execute(PlayerFiltering.GetAllApplicablePlayers(
+                event.getServer().createCommandSourceStack()));
             CountDownTicks = RandomyzerCommand.countdownTime.GetValue() * 20;
-            DropSound.Execute(event.getServer().getPlayerList().getPlayers());
+            DropSound.Execute(PlayerFiltering.GetAllApplicablePlayers(
+                event.getServer().createCommandSourceStack()));
         }
         if (RandomyzerCommand.countdownStyle.GetValue()
             != RandomyzerCommand.TimerDisplayType.none)
-                Countdown.Execute(event.getServer().getPlayerList().getPlayers());
+                Countdown.Execute(PlayerFiltering.GetAllApplicablePlayers(
+                    event.getServer().createCommandSourceStack()));
         else Countdown.HideAll(event.getServer());
     }
 

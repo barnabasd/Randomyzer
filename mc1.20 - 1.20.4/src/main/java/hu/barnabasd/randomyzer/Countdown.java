@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Countdown {
 
-    private static final ServerBossEvent bossbar = new ServerBossEvent(
+    public static final ServerBossEvent bossbar = new ServerBossEvent(
         Component.literal(String.valueOf((Randomyzer.CountDownTicks / 20)))
             .withStyle(style -> style.withColor(ChatFormatting.YELLOW)).append(
         Component.literal(" seconds until next item...").withStyle(

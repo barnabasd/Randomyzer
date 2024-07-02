@@ -30,6 +30,7 @@ public class RandomyzerCommand {
     public static @NotNull LiteralArgumentBuilder<CommandSourceStack> GetConfig() {
         LiteralArgumentBuilder<CommandSourceStack> Config = Commands.literal("config");
         PROPERTIES.forEach(property -> Config.then(property.GetCommand()));
+        Config.then(PlayerFiltering.GetCommand());
         return Config;
     }
 

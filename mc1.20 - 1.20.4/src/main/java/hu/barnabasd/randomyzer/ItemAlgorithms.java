@@ -3,25 +3,21 @@ package hu.barnabasd.randomyzer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
 
 public class ItemAlgorithms {
 
-    public static final List<Item> ITEMS =
-        ForgeRegistries.ITEMS.getEntries().stream().map(Map.Entry::getValue).toList();
-
     public static Item GetRandomItem() {
+        List<Item> ITEMS = ItemFiltering.GetApplicableItems();
         int index = new Random().nextInt(0, ITEMS.size());
         return ITEMS.get(index);
     }
 
     public static void Execute(List<ServerPlayer> players) {
-        RandomyzerCommand.DistributionType type = (RandomyzerCommand.DistributionType) RandomyzerCommand.distributionType.GetValue();
+        RandomyzerCommand.DistributionType type = RandomyzerCommand.distributionType.GetValue();
         int count = RandomyzerCommand.itemCount.GetValue();
         if (type == RandomyzerCommand.DistributionType.randomDifferent)
             for (ServerPlayer player : players)
