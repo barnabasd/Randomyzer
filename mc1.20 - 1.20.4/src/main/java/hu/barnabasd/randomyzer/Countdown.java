@@ -23,7 +23,8 @@ public class Countdown {
     }
 
     public static void Execute(MinecraftServer server) {
-
+        List<ServerPlayer> players = server.getPlayerList().getPlayers();
+        players.forEach(player -> bossbar.addPlayer(player));
     }
 
 }
