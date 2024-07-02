@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 @Mod(Randomyzer.MOD_ID)
 public class Randomyzer {
 
-    private static int CountDownTicks = RandomyzerCommand.countdownTime.GetValue() * 20;
+    public static int CountDownTicks = RandomyzerCommand.countdownTime.GetValue() * 20;
     public static boolean IsTimerRunning = false;
 
     public static final String MOD_ID = "randomyzer";
@@ -28,10 +28,11 @@ public class Randomyzer {
         else {
             ItemAlgorithms.Execute(event.getServer().getPlayerList().getPlayers());
             CountDownTicks = RandomyzerCommand.countdownTime.GetValue() * 20;
+            DropSound.Execute(event.getServer().getPlayerList().getPlayers());
         }
         if (RandomyzerCommand.countdownStyle.GetValue()
             != RandomyzerCommand.TimerDisplayType.none)
-                Countdown.Execute(event.getServer());
+                Countdown.Execute(event.getServer().getPlayerList().getPlayers());
         else Countdown.HideAll(event.getServer());
     }
 

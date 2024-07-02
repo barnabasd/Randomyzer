@@ -10,14 +10,15 @@ import java.util.List;
 public class RandomyzerCommand {
 
     public enum DistributionType { randomDifferent, sameDifferent, randomGlobal, sameGlobal }
-    public enum TimerDisplayType { bossbar, actionbar_text, actionbar_bar, none }
+    public enum TimerDisplayType { bossbar, actionbar, none }
 
-    public static final CustomGameRule.EnumRule distributionType =
-        new CustomGameRule.EnumRule("distributionType", DistributionType.values(), DistributionType.randomDifferent);
-    public static final CustomGameRule.EnumRule countdownStyle =
-        new CustomGameRule.EnumRule("countdownStyle", TimerDisplayType.values(), TimerDisplayType.bossbar);
     public static final CustomGameRule.IntegerRule countdownTime =
-        new CustomGameRule.IntegerRule("countdownTime", 1, Integer.MAX_VALUE, 40);
+        new CustomGameRule.IntegerRule("countdownTime", 1, (Integer.MAX_VALUE / 20) - 1, 40,
+            (e, f) -> Randomyzer.CountDownTicks = Math.min(Randomyzer.CountDownTicks, f * 20));
+    public static final CustomGameRule.EnumRule<TimerDisplayType> countdownStyle =
+        new CustomGameRule.EnumRule<>("countdownStyle", TimerDisplayType.values(), TimerDisplayType.bossbar, (e, f) -> Countdown.HideAll(e));
+    public static final CustomGameRule.EnumRule<DistributionType> distributionType =
+        new CustomGameRule.EnumRule<>("distributionType", DistributionType.values(), DistributionType.randomDifferent);
     public static final CustomGameRule.BooleanRule enableDropSound =
         new CustomGameRule.BooleanRule("enableDropSound", true);
     public static final CustomGameRule.IntegerRule itemCount =
