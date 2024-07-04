@@ -37,6 +37,7 @@
 <hr>
 <h3>Future plans:</h3>
 <ul>
+    <li>Saving settings per world</li>
     <li>Item filtering</li>
     <li>Multiple world support</li>
     <li>Fixing bugs <b><i>(If you find a bug, please report it to us so we can fix it)</b></i></li>
