@@ -22,6 +22,7 @@
 <li>Multiple world support</li>
 <li>Enchanted books, potions, suspicious stews, tipped arrows</li>
 <li>Fixing bugs <strong><em>(If you find a bug, please report it to us so we can fix it)</em></strong></li>
+<li>1.21 (Barnabasd is working on a bunch of other projects currently, but don’t worry the update will happen)</li>
 </ul>
 <hr>
 <h3>(Possible) Questions&amp;Answers<br><br></h3>
@@ -33,4 +34,4 @@
 <h3>Creators:</h3>
 <p>Programming, wiki: barnabasd&nbsp;<br>Idea, Curseforge/Github/Modrinth page: Valaki</p>
 <hr>
-<p style="text-align: center;"><a href="https://github.com/barnabasd/Randomyzer/wiki" rel="nofollow"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_wiki.png" alt="Card 1" width="100" height="100"></a> &nbsp; <a href="https://www.curseforge.com/minecraft/mc-mods/randomyzermod" rel="nofollow"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_cf.png" alt="Card 2" width="100" height="100"></a> &nbsp; <a href="https://modrinth.com/mod/randomyzermod" rel="nofollow"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_modrinth.png" alt="Card 3" width="100" height="100"></a> &nbsp;<a href="https://github.com/barnabasd/Randomyzer/issues/new" rel="nofollow"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_bug.png" alt="Card 5" width="100" height="100"></a></p>
+<p style="text-align: center;"><a href="https://github.com/barnabasd/Randomyzer/wiki" rel="nofollow"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_wiki.png" alt="Card 1" width="100" height="100"></a> &nbsp; <a href="https://www.curseforge.com/minecraft/mc-mods/randomyzermod" rel="nofollow"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_cf.png" alt="Card 2" width="100" height="100"></a> &nbsp; <a href="https://modrinth.com/mod/randomyzermod" rel="nofollow"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_modrinth.png" alt="Card 3" width="100" height="100"></a> &nbsp; <a href="https://github.com/barnabasd/Randomyzer/issues/new" rel="nofollow"><img src="https://raw.githubusercontent.com/barnabasd/Randomyzer/master/images/card_bug.png" alt="Card 5" width="100" height="100"></a></p>
