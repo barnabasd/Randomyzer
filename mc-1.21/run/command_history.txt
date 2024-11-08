@@ -1,0 +1,2 @@
+/randomyzer toggle
+/randomyzer cycle

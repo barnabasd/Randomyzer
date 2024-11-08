@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: randomyzer
+Specification-Vendor: 
+Specification-Version: 1
+Implementation-Title: mc-1-21
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor: 
+Implementation-Timestamp: 2024-11-08T19:18:26+0100
+

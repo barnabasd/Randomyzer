@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Randomyzer.iml" filepath="$PROJECT_DIR$/.idea/Randomyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hu.barnabasd.Randomyzer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/hu.barnabasd.Randomyzer.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hu.barnabasd.Randomyzer.test.iml" filepath="$PROJECT_DIR$/.idea/modules/hu.barnabasd.Randomyzer.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mc1.20.6.Randomyzer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mc1.20.6.Randomyzer.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mc1.20.6.Randomyzer.test.iml" filepath="$PROJECT_DIR$/.idea/modules/mc1.20.6.Randomyzer.test.iml" />
+    </modules>
+  </component>
+</project>
