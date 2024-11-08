@@ -22,7 +22,6 @@
 <li>Multiple world support</li>
 <li>Enchanted books, potions, suspicious stews, tipped arrows</li>
 <li>Fixing bugs <strong><em>(If you find a bug, please report it to us so we can fix it)</em></strong></li>
-<li>1.21 (Barnabasd is working on a bunch of other projects currently, but don’t worry the update will happen)</li>
 </ul>
 <hr>
 <h3>(Possible) Questions&amp;Answers<br><br></h3>
