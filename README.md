@@ -21,7 +21,7 @@
 <li>Item filtering</li>
 <li>Multiple world support</li>
 <li>Enchanted books, potions, suspicious stews, tipped arrows</li>
-<li>1.21.4 and soon 1.22</li>
+<li>1.21.4 and 1.21.5</li>
 <li>Fixing bugs <strong><em>(If you find a bug, please report it to us so we can fix it)</em></strong></li>
 </ul>
 <hr>
